@@ -8,77 +8,102 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style type="text/tailwindcss">
         @import url('https://fonts.googleapis.com/css2?family=Line+Seed+Sans:wght@400;700&display=swap');
-        
         @layer base {
-            body { 
-                font-family: 'Line Seed Sans', sans-serif; 
-                scroll-behavior: smooth; 
-                @apply bg-white text-gray-900 overflow-x-hidden;
-            }
+            body { font-family: 'Line Seed Sans', sans-serif; scroll-behavior: smooth; @apply bg-white text-gray-900; }
         }
-
         @layer components {
-            .sticky-nav {
-                @apply fixed top-0 w-full z-[9999] border-b border-gray-100;
-                backdrop-filter: blur(12px);
-                background-color: rgba(255, 255, 255, 0.8);
-            }
-            .nav-link {
-                @apply transition-all duration-300 relative hover:text-black;
-            }
-            .img-box {
-                @apply bg-gray-100 rounded-[2.5rem] flex items-center justify-center text-gray-400 overflow-hidden shadow-inner;
-            }
+            .sticky-nav { @apply fixed top-0 w-full z-[9999] border-b border-gray-100; backdrop-filter: blur(12px); background-color: rgba(255, 255, 255, 0.8); }
+            .nav-link { @apply transition-all duration-300 relative hover:text-black; }
+            .img-box { @apply bg-gray-100 rounded-[2.5rem] flex items-center justify-center text-gray-400 overflow-hidden shadow-inner min-h-[400px]; }
+            .project-tag { @apply font-bold tracking-widest text-sm uppercase mb-4 block; }
         }
     </style>
 </head>
-<body>
+<body class="overflow-x-hidden">
 
     <nav class="sticky-nav">
         <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
             <a href="#" class="font-black text-2xl tracking-tighter">OK GEUMBI</a>
             <div class="hidden md:flex gap-8 text-[11px] font-bold uppercase tracking-[0.2em]">
-                <a href="#brick-it" class="nav-link text-orange-600">01. Brick it!</a>
-                <a href="#auto-insight" class="nav-link text-blue-600">02. AutoInsight</a>
-                <a href="#camomyl" class="nav-link text-pink-600">03. CAMOMYL</a>
-                <a href="#cibus" class="nav-link text-purple-600">04. Cibus Odyssey</a>
-                <a href="#research" class="nav-link text-emerald-700">05. Research</a>
+                <a href="#p1" class="nav-link text-orange-600">01. Brick it!</a>
+                <a href="#p2" class="nav-link text-blue-600">02. AutoInsight</a>
+                <a href="#p3" class="nav-link text-pink-600">03. CAMOMYL</a>
+                <a href="#p4" class="nav-link text-purple-600">04. Cibus</a>
+                <a href="#p5" class="nav-link text-emerald-700">05. Research</a>
             </div>
         </div>
     </nav>
 
     <section class="h-screen flex flex-col justify-center items-center text-center px-6">
-        <div data-aos="fade-up" data-aos-duration="1500">
+        <div data-aos="fade-up">
             <h1 class="text-7xl md:text-[10rem] font-black tracking-tighter leading-none mb-6">OK GEUMBI</h1>
             <p class="text-lg md:text-2xl font-light text-gray-400 tracking-[0.5em] uppercase">Visual Design & Computer Science</p>
         </div>
     </section>
 
-    <section id="brick-it" class="py-40 px-6 max-w-7xl mx-auto border-t border-gray-50">
-        <div class="flex flex-col md:flex-row gap-20 items-center">
+    <section id="p1" class="py-40 px-6 max-w-7xl mx-auto border-t border-gray-50">
+        <div class="flex flex-col md:flex-row gap-16 items-center">
             <div class="md:w-2/5" data-aos="fade-right">
-                <span class="text-orange-500 font-bold tracking-widest text-sm uppercase">01. Medical XR Solution</span>
-                <h2 class="text-6xl md:text-7xl font-black mt-4 mb-10 italic uppercase leading-none">Brick it!</h2>
-                <p class="text-gray-500 text-lg leading-relaxed mb-12">
-                    2024 의료 XR 해커톤 대상 수상작. <br>장기 입원 아동들을 위한 가상 환경 블록 코딩 시스템입니다.
-                </p>
-                <div class="inline-block px-8 py-4 bg-orange-50 rounded-2xl border border-orange-100 font-bold text-sm text-orange-700">
-                    Role: UX/UI Design 50% / 3D Modeling 80%
-                </div>
+                <span class="project-tag text-orange-500">01. Medical XR Solution</span>
+                <h2 class="text-6xl font-black mb-8 italic uppercase leading-none">Brick it!</h2>
+                <p class="text-gray-500 text-lg leading-relaxed mb-10">2024 의료 XR 해커톤 대상 수상작. 장기 입원 아동들을 위한 가상 환경 블록 코딩 시스템입니다.</p>
+                <div class="inline-block px-6 py-3 bg-orange-50 rounded-xl border border-orange-100 font-bold text-xs text-orange-700">Role: UX/UI Design 50% / 3D Modeling 80%</div>
             </div>
-            <div class="md:w-3/5 w-full img-box h-[500px]" data-aos="zoom-in">
-                <span class="text-xs uppercase tracking-widest text-gray-300">Project Main Visual</span>
-            </div>
+            <div class="md:w-3/5 w-full img-box" data-aos="zoom-in">[Brick it! 이미지]</div>
         </div>
     </section>
 
-    <section id="auto-insight" class="py-40 bg-gray-950 text-white px-6">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row-reverse gap-20 items-center">
+    <section id="p2" class="py-40 bg-gray-950 text-white px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row-reverse gap-16 items-center">
             <div class="md:w-2/5 text-right" data-aos="fade-left">
-                <span class="text-blue-400 font-bold tracking-widest text-sm uppercase">02. VR Platform</span>
-                <h2 class="text-6xl md:text-7xl font-black mt-4 mb-10 italic uppercase leading-none">AutoInsight</h2>
-                <p class="text-gray-400 text-lg leading-relaxed mb-12 opacity-80">
-                    사회 초년생을 위한 신차 구매 가이드 플랫폼. <br>오프라인 매장 방문 없이 차량을 3D로 체험합니다.
-                </p>
+                <span class="project-tag text-blue-400">02. VR Platform</span>
+                <h2 class="text-6xl font-black mb-8 italic uppercase leading-none">AutoInsight</h2>
+                <p class="text-gray-400 text-lg leading-relaxed mb-10 opacity-80">사회 초년생을 위한 신차 구매 가이드 플랫폼. 오프라인 매장 방문 없이 차량을 3D로 체험합니다.</p>
             </div>
-            <div class="md:w-3/5 w-full img-box h-[500px] bg-gray-900 border-gray-800"
+            <div class="md:w-3/5 w-full img-box bg-gray-900 border-gray-800" data-aos="zoom-in">[AutoInsight 이미지]</div>
+        </div>
+    </section>
+
+    <section id="p3" class="py-40 px-6 max-w-7xl mx-auto border-t border-gray-50">
+        <div class="flex flex-col md:flex-row gap-16 items-center">
+            <div class="md:w-2/5" data-aos="fade-right">
+                <span class="project-tag text-pink-500">03. Mobile App Service</span>
+                <h2 class="text-6xl font-black mb-8 italic uppercase leading-none">CAMOMYL</h2>
+                <p class="text-gray-500 text-lg leading-relaxed mb-10">마음의 평온을 돕는 심리 케어 서비스. 사용자 경험을 최우선으로 고려한 모바일 인터페이스 디자인입니다.</p>
+            </div>
+            <div class="md:w-3/5 w-full img-box" data-aos="zoom-in">[CAMOMYL 이미지]</div>
+        </div>
+    </section>
+
+    <section id="p4" class="py-40 bg-gray-50 px-6">
+        <div class="max-w-7xl mx-auto text-center mb-20" data-aos="fade-up">
+            <span class="project-tag text-purple-600">04. 3D Environment Design</span>
+            <h2 class="text-7xl font-black italic uppercase leading-none">Cibus Odyssey</h2>
+        </div>
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="img-box h-[500px] bg-white" data-aos="fade-right">[Main View]</div>
+            <div class="img-box h-[500px] bg-white" data-aos="fade-left">[Detail View]</div>
+        </div>
+    </section>
+
+    <section id="p5" class="py-40 px-6 max-w-7xl mx-auto border-t border-gray-100">
+        <div class="flex flex-col md:flex-row-reverse gap-16 items-center">
+            <div class="md:w-2/5 text-right" data-aos="fade-left">
+                <span class="project-tag text-emerald-700">05. Data Research</span>
+                <h2 class="text-6xl font-black mb-8 italic uppercase leading-none">Research</h2>
+                <p class="text-gray-500 text-lg leading-relaxed mb-10">컴퓨터공학적 관점의 데이터 분석과 시각 디자인적 인사이트를 결합한 연구 프로젝트입니다.</p>
+            </div>
+            <div class="md:w-3/5 w-full img-box" data-aos="zoom-in">[Research 데이터 이미지]</div>
+        </div>
+    </section>
+
+    <footer class="py-40 text-center border-t border-gray-50">
+        <p class="text-4xl font-black mb-6 italic">LET'S CONNECT</p>
+        <p class="text-gray-400 font-bold">goldrain125@naver.com</p>
+        <p class="mt-20 text-[10px] text-gray-300 font-bold uppercase tracking-[0.5em]">© 2026 OK GEUMBI. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init({ duration: 1000, once: false });</script>
+</body>
+</html>
