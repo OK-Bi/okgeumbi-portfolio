@@ -1,109 +1,908 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OK GEUMBI | Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <style type="text/tailwindcss">
-        @import url('https://fonts.googleapis.com/css2?family=Line+Seed+Sans:wght@400;700&display=swap');
-        @layer base {
-            body { font-family: 'Line Seed Sans', sans-serif; scroll-behavior: smooth; @apply bg-white text-gray-900; }
-        }
-        @layer components {
-            .sticky-nav { @apply fixed top-0 w-full z-[9999] border-b border-gray-100; backdrop-filter: blur(12px); background-color: rgba(255, 255, 255, 0.8); }
-            .nav-link { @apply transition-all duration-300 relative hover:text-black; }
-            .img-box { @apply bg-gray-100 rounded-[2.5rem] flex items-center justify-center text-gray-400 overflow-hidden shadow-inner min-h-[400px]; }
-            .project-tag { @apply font-bold tracking-widest text-sm uppercase mb-4 block; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geumbi Ok — Design Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" as="style" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+/* ─── RESET ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:      #FAFAFA;
+  --bg2:     #F1F0EE;
+  --surface: #FFFFFF;
+  --border:  rgba(0,0,0,0.08);
+  --border-strong: rgba(0,0,0,0.18);
+  --ink:     #111110;
+  --ink2:    #64625D;
+  --ink3:    #A4A09A;
+  --accent:  #C8512A;
+  --serif:   'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', system-ui, sans-serif;
+  --sans:    'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', system-ui, sans-serif;
+  --ease:    cubic-bezier(0.22, 1, 0.36, 1);
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  word-break: keep-all;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button { border: none; background: none; cursor: pointer; font-family: var(--sans); color: inherit; }
+
+/* ─── PAGE SYSTEM ─── */
+.page { display: none; min-height: 100vh; }
+.page.active { display: block; }
+#contact.active { display: flex; }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 58px;
+  background: rgba(250,250,250,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 0.5px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase;
+  cursor: pointer; transition: opacity 0.2s;
+}
+.nav-logo:hover { opacity: 0.55; }
+.nav-links { display: flex; align-items: center; gap: 36px; }
+.nav-link {
+  font-size: 13px; color: var(--ink2);
+  cursor: pointer; transition: color 0.18s;
+}
+.nav-link:hover, .nav-link.active { color: var(--ink); }
+.lang-toggle {
+  display: flex; align-items: center; gap: 1px;
+  background: var(--bg2); border-radius: 20px; padding: 3px;
+  border: 0.5px solid var(--border);
+}
+.lang-btn {
+  font-size: 11px; font-weight: 500; padding: 4px 11px;
+  border-radius: 16px; transition: all 0.16s; color: var(--ink3);
+}
+.lang-btn.active { background: var(--ink); color: var(--bg); }
+
+/* ══════════════════════════════════
+   HOME
+══════════════════════════════════ */
+#home { padding-top: 58px; }
+
+.hero {
+  display: flex; flex-direction: column;
+  justify-content: flex-start;
+  padding: 80px 48px 40px;
+  max-width: 900px;
+}
+.hero-name {
+  font-family: var(--serif);
+  font-size: clamp(26px, 3.5vw, 52px);
+  font-weight: 700;
+  line-height: 1.25; letter-spacing: -0.02em;
+  margin-bottom: 32px;
+}
+:lang(ko) .hero-name { letter-spacing: -0.02em; }
+
+.hero-tags {
+  display: flex; gap: 0; flex-wrap: wrap; margin-bottom: 0;
+  border-top: 0.5px solid var(--border-strong);
+  border-bottom: 0.5px solid var(--border-strong);
+  padding: 10px 0;
+}
+.tag {
+  font-size: 11px; font-weight: 500; padding: 4px 16px;
+  border-right: 0.5px solid var(--border-strong); border-radius: 0;
+  color: var(--ink2); letter-spacing: 0.06em; text-transform: uppercase;
+}
+.tag:first-child { padding-left: 0; }
+.tag:last-child { border-right: none; }
+
+/* ── Project grid ── */
+.home-grid-section { padding: 0 0 80px; }
+.home-grid-label {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 32px 48px 28px;
+}
+.home-grid-label span:first-child {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.10em;
+  text-transform: uppercase; color: var(--ink3);
+}
+.home-grid-label .see-all {
+  font-size: 12px; color: var(--ink3); cursor: pointer; transition: color 0.18s;
+  display: flex; align-items: center; gap: 6px;
+}
+.home-grid-label .see-all:hover { color: var(--ink); }
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 0 48px 12px;
+}
+.proj-tile {
+  position: relative; overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 4/3;
+  background: var(--bg2);
+  border-radius: 0;
+}
+.proj-tile-img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 0.55s var(--ease);
+}
+.proj-tile:hover .proj-tile-img { transform: scale(1.04); }
+.proj-tile:nth-child(odd)  { border-right: none; }
+.proj-tile:nth-child(n+3)  { border-top: none; }
+
+.t-otoki    { background: linear-gradient(145deg, #FEF5DC 0%, #F2C14E 100%); }
+.t-brick    { background: linear-gradient(145deg, #FFE8DC 0%, #E05B2B 100%); }
+.t-camomyl  { background: linear-gradient(145deg, #E4F5EC 0%, #6EBF88 100%); }
+.t-auto     { background: linear-gradient(145deg, #0C0C1A 0%, #1B3660 100%); }
+.t-cibus    { background: linear-gradient(145deg, #180A2A 0%, #5E2E96 100%); }
+.t-introvert{ background: linear-gradient(145deg, #102210 0%, #3B8A50 100%); }
+
+.proj-tile-emoji {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 56px;
+  transition: transform 0.55s var(--ease);
+}
+.proj-tile:hover .proj-tile-emoji { transform: scale(1.06); }
+
+.proj-tile-overlay {
+  position: absolute; inset: 0;
+  background: rgba(20,18,14,0.82);
+  display: flex; flex-direction: column;
+  justify-content: flex-end;
+  padding: 28px;
+  opacity: 0;
+  transition: opacity 0.32s var(--ease);
+}
+.proj-tile:hover .proj-tile-overlay { opacity: 1; }
+
+.tile-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+.tile-tag {
+  font-size: 10px; font-weight: 500; padding: 3px 9px;
+  border-radius: 10px; border: 0.5px solid rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.75); letter-spacing: 0.03em;
+}
+.tile-name {
+  font-family: var(--serif); font-size: 22px; font-weight: 600; letter-spacing: -0.01em;
+  color: #fff; margin-bottom: 4px; line-height: 1.1;
+}
+.tile-desc { font-size: 11px; font-weight: 300; color: rgba(255,255,255,0.55); line-height: 1.8; letter-spacing: 0.01em; }
+.tile-arrow {
+  position: absolute; top: 20px; right: 22px;
+  font-size: 18px; color: rgba(255,255,255,0.5);
+  opacity: 0; transform: translate(-6px,-6px);
+  transition: all 0.28s var(--ease);
+}
+.proj-tile:hover .tile-arrow { opacity: 1; transform: translate(0,0); }
+
+/* ══════════════════════════════════
+   WORK
+══════════════════════════════════ */
+#work { padding-top: 58px; }
+.work-header {
+  padding: 64px 48px 36px;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  border-bottom: 0.5px solid var(--border);
+}
+.work-title {
+  font-family: var(--serif); font-size: 52px; font-weight: 700; letter-spacing: -0.02em;
+}
+.work-subtitle { font-size: 13px; color: var(--ink3); }
+
+.filter-bar {
+  padding: 20px 48px;
+  display: flex; gap: 6px; border-bottom: 0.5px solid var(--border);
+}
+.filter-btn {
+  font-size: 12px; font-weight: 500; padding: 6px 16px;
+  border: none; border-radius: 0;
+  color: var(--ink2); transition: all 0.16s;
+}
+.filter-btn:hover { color: var(--ink); }
+.filter-btn.active { background: var(--ink); color: var(--bg); border-color: transparent; }
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 20px 48px 48px;
+}
+.work-grid .proj-tile { aspect-ratio: 3/2; border-radius: 0; }
+
+/* ── AWARD BADGE ── */
+.award-badge {
+  position: absolute; top: 14px; left: 14px; z-index: 10;
+  display: flex; align-items: center; gap: 6px;
+  font-size: 9px; font-weight: 500; letter-spacing: 0.12em;
+  text-transform: uppercase; padding: 5px 10px; border-radius: 0;
+  pointer-events: none;
+}
+.award-badge.gold {
+  background: rgba(10,10,8,0.82); color: #D4AE60;
+  border: 0.5px solid rgba(212,174,96,0.5);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+.award-badge.program {
+  background: rgba(255,255,255,0.88); color: #3A5A8A;
+  border: 0.5px solid rgba(58,90,138,0.30);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+.proj-tile.grand-prize {
+  outline: 1.5px solid rgba(180,140,50,0.55);
+  outline-offset: -1.5px;
+}
+.proj-tile.grand-prize:hover { outline-color: rgba(212,174,96,0.85); }
+
+/* ══════════════════════════════════
+   CASE STUDY
+══════════════════════════════════ */
+#case-study { padding-top: 58px; }
+.cs-back { padding: 20px 48px; border-bottom: 0.5px solid var(--border); }
+.back-btn {
+  font-size: 13px; color: var(--ink2); cursor: pointer;
+  display: inline-flex; align-items: center; gap: 8px; transition: color 0.18s;
+}
+.back-btn:hover { color: var(--ink); }
+
+.cs-hero { max-width: 960px; margin: 0 auto; padding: 52px 48px 56px; }
+.cs-eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.10em;
+  text-transform: uppercase; color: var(--ink3); margin-bottom: 18px;
+  display: flex; gap: 12px; flex-wrap: wrap;
+}
+.cs-title {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(32px, 4vw, 52px);
+  letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 24px;
+  color: var(--ink);
+}
+.cs-subtitle {
+  font-size: 16px; color: var(--ink2); line-height: 1.75;
+  max-width: 600px; margin-bottom: 44px;
+}
+.cs-meta {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border);
+  margin-bottom: 48px;
+}
+.cs-meta-item { padding: 16px 0 16px 0; border-right: 0.5px solid var(--border); padding-left: 20px; }
+.cs-meta-item:first-child { padding-left: 0; }
+.cs-meta-item:last-child { border-right: none; }
+.cs-meta-label {
+  font-size: 10px; font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--ink3); margin-bottom: 6px;
+}
+.cs-meta-val { font-size: 13px; font-weight: 500; line-height: 1.55; color: var(--ink); }
+
+.cs-body { max-width: 960px; margin: 0 auto; padding: 0 48px 80px; }
+.cs-section { margin-bottom: 64px; }
+.cs-section-label {
+  font-size: 8px; font-weight: 500; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+.cs-section-label::before { content:''; display:block; width:14px; height:1px; background:var(--accent); }
+.cs-section-title {
+  font-family: var(--serif); font-size: 32px; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 18px;
+}
+.cs-text { font-size: 15px; color: var(--ink2); line-height: 1.82; }
+.cs-highlight {
+  background: var(--surface); border: 0.5px solid var(--border);
+  border-left: 2.5px solid var(--accent); border-radius: 0 10px 10px 0;
+  padding: 18px 22px; margin: 24px 0;
+  font-size: 14px; color: var(--ink); line-height: 1.75;
+}
+.cs-pill-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 22px; }
+.cs-pill {
+  font-size: 12px; font-weight: 500; padding: 6px 14px;
+  background: var(--bg2); border-radius: 20px; color: var(--ink2);
+}
+.cs-next {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 32px 48px; border-top: 0.5px solid var(--border);
+  cursor: pointer; transition: background 0.2s;
+}
+.cs-next:hover { background: var(--bg2); }
+.cs-next-label {
+  font-size: 10px; font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--ink3); margin-bottom: 6px;
+}
+.cs-next-title { font-family: var(--serif); font-size: 24px; font-weight: 500; letter-spacing: -0.01em; }
+.cs-next-arrow { font-size: 26px; color: var(--ink3); }
+
+/* ══════════════════════════════════
+   ABOUT
+══════════════════════════════════ */
+#about { padding-top: 58px; }
+.about-content {
+  max-width: 960px; margin: 0 auto;
+  padding: 64px 48px 80px;
+  display: grid; grid-template-columns: 200px 1fr; gap: 80px;
+}
+.about-name { font-family: var(--serif); font-size: 36px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 10px; }
+.about-role { font-size: 13px; color: var(--ink2); margin-bottom: 24px; line-height: 1.6; }
+.about-contact { display: flex; flex-direction: column; gap: 8px; }
+.about-contact a {
+  font-size: 12px; color: var(--ink3);
+  display: flex; align-items: center; gap: 6px; transition: color 0.18s;
+}
+.about-contact a:hover { color: var(--ink); }
+.about-bio { font-size: 16px; color: var(--ink2); line-height: 1.8; margin-bottom: 48px; }
+.about-section { margin-bottom: 40px; }
+.about-section-title {
+  font-size: 10px; font-weight: 500; letter-spacing: 0.10em;
+  text-transform: uppercase; color: var(--ink3);
+  margin-bottom: 20px; padding-bottom: 12px;
+  border-bottom: 0.5px solid var(--border);
+}
+.about-exp-list { display: flex; flex-direction: column; gap: 18px; }
+.about-exp-role { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
+.about-exp-place { font-size: 13px; color: var(--ink2); }
+.about-exp-period { font-size: 12px; color: var(--ink3); }
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.skill-group {
+  background: var(--surface); border: 0.5px solid var(--border);
+  border-radius: 10px; padding: 14px 16px;
+}
+.skill-group-name {
+  font-size: 10px; font-weight: 500; color: var(--ink3);
+  letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px;
+}
+.skill-list { font-size: 12px; color: var(--ink2); line-height: 1.9; }
+
+/* ══════════════════════════════════
+   CONTACT
+══════════════════════════════════ */
+#contact { padding-top: 58px; min-height: 100vh; align-items: center; }
+.contact-content {
+  max-width: 660px; margin: 0 auto; padding: 80px 40px; text-align: center;
+}
+.contact-eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.10em;
+  text-transform: uppercase; color: var(--ink3); margin-bottom: 20px;
+}
+.contact-title {
+  font-family: var(--serif); font-weight: 700; font-size: clamp(40px, 6vw, 62px);
+  letter-spacing: -0.03em; margin-bottom: 20px; line-height: 1.05;
+}
+.contact-text {
+  font-size: 16px; color: var(--ink2); line-height: 1.75;
+  margin-bottom: 44px; max-width: 440px; margin-left: auto; margin-right: auto;
+}
+.contact-email {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 17px; font-weight: 500; padding: 15px 30px;
+  background: var(--ink); color: var(--bg); border-radius: 12px;
+  transition: all 0.22s var(--ease); margin-bottom: 28px;
+}
+.contact-email:hover { background: var(--accent); transform: translateY(-2px); }
+.contact-links { display: flex; justify-content: center; gap: 28px; }
+.contact-link {
+  font-size: 13px; color: var(--ink3);
+  display: flex; align-items: center; gap: 6px; transition: color 0.18s;
+}
+.contact-link:hover { color: var(--ink); }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 0.5px solid var(--border); padding: 22px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.footer-copy { font-size: 12px; color: var(--ink3); }
+.footer-back { font-size: 12px; color: var(--ink3); cursor: pointer; transition: color 0.18s; }
+.footer-back:hover { color: var(--ink); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+#home.active .hero-name { animation: fadeUp 0.65s var(--ease) 0.12s both; }
+#home.active .hero-tags { animation: fadeUp 0.65s var(--ease) 0.27s both; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 800px) {
+  nav { padding: 0 20px; }
+  .hero { padding: 60px 20px 40px; }
+  .card-grid { grid-template-columns: repeat(2, 1fr); padding: 0 20px 12px; }
+  .proj-tile { aspect-ratio: 3/2; }
+  .work-grid { grid-template-columns: 1fr 1fr; padding: 20px 20px 48px; }
+  .about-content { grid-template-columns: 1fr; gap: 32px; padding: 40px 20px; }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+  .cs-meta { grid-template-columns: 1fr 1fr; }
+  .cs-meta-item:nth-child(2) { border-right: none; }
+  .cs-meta-item:nth-child(3) { border-top: 0.5px solid rgba(0,0,0,0.10); }
+  .work-header { padding: 40px 20px 24px; flex-direction: column; gap: 8px; align-items: flex-start; }
+  .filter-bar { padding: 16px 20px; flex-wrap: wrap; }
+  .home-grid-label { padding: 24px 20px 20px; }
+  .cs-hero, .cs-body { padding-left: 20px; padding-right: 20px; }
+}
+
+@media (max-width: 480px) {
+  .card-grid { grid-template-columns: 1fr; padding: 0 20px 12px; }
+  .proj-tile { aspect-ratio: 4/3; }
+  .work-grid { grid-template-columns: 1fr; padding: 16px 20px 48px; }
+  .work-grid .proj-tile { aspect-ratio: 4/3; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .cs-meta { grid-template-columns: 1fr 1fr; }
+  .hero-name { font-size: clamp(22px, 7vw, 36px); }
+  .cs-next { padding: 24px 20px; }
+  .filter-bar { gap: 4px; }
+}
+</style>
 </head>
-<body class="overflow-x-hidden">
+<body>
 
-    <nav class="sticky-nav">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-            <a href="#" class="font-black text-2xl tracking-tighter">OK GEUMBI</a>
-            <div class="hidden md:flex gap-8 text-[11px] font-bold uppercase tracking-[0.2em]">
-                <a href="#p1" class="nav-link text-orange-600">01. Brick it!</a>
-                <a href="#p2" class="nav-link text-blue-600">02. AutoInsight</a>
-                <a href="#p3" class="nav-link text-pink-600">03. CAMOMYL</a>
-                <a href="#p4" class="nav-link text-purple-600">04. Cibus</a>
-                <a href="#p5" class="nav-link text-emerald-700">05. Research</a>
-            </div>
+<!-- ─── NAV ─── -->
+<nav>
+  <div class="nav-logo" onclick="goPage('home')">Geumbi Ok</div>
+  <div class="nav-links">
+    <span class="nav-link" data-nav="work"    onclick="goPage('work')"    data-ko="작업"  data-en="Work">Work</span>
+    <span class="nav-link" data-nav="about"   onclick="goPage('about')"   data-ko="소개"  data-en="About">About</span>
+    <span class="nav-link" data-nav="contact" onclick="goPage('contact')" data-ko="연락"  data-en="Contact">Contact</span>
+    <div class="lang-toggle">
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+      <button class="lang-btn active" onclick="setLang('ko')">KO</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════
+     HOME
+══════════════════════ -->
+<div id="home" class="page active">
+  <section class="hero">
+    <h1 class="hero-name">
+      <span data-ko="이야기를 시각화하는 디자이너." data-en="A designer who visualizes stories.">A designer who visualizes stories.</span><br>
+      <span data-ko="그래픽, UX/UI, 브랜딩." data-en="Graphic, UX/UI, Branding.">Graphic, UX/UI, Branding.</span><br>
+      <span data-ko="소통 능력을 바탕으로, 생생한 디자인을 구현합니다." data-en="I design the moment idea reaches people." style="color:var(--accent); font-weight:800;">I design the moment idea reaches people.</span>
+    </h1>
+    <div class="hero-tags">
+      <span class="tag" data-ko="패키지 디자인" data-en="Package Design">Package Design</span>
+      <span class="tag">UX/UI</span>
+      <span class="tag" data-ko="3D &amp; XR" data-en="3D &amp; XR">3D &amp; XR</span>
+    </div>
+  </section>
+
+  <section class="home-grid-section">
+    <div class="home-grid-label">
+      <span data-ko="작업물" data-en="Selected Work">Selected Work</span>
+      <span class="see-all" onclick="goPage('work')">
+        <span data-ko="전체 보기" data-en="View All">View All</span> →
+      </span>
+    </div>
+    <div class="card-grid">
+      <div class="proj-tile t-otoki" onclick="openCase('otoki')">
+        <img class="proj-tile-img" src="images/thumb_otoki.jpg" alt="OTOKI">
+        <div class="tile-arrow">↗</div>
+        <div class="proj-tile-overlay">
+          <div class="tile-tags"><span class="tile-tag" data-ko="패키지" data-en="Packaging">Packaging</span><span class="tile-tag" data-ko="그래픽" data-en="Graphic">Graphic</span></div>
+          <div class="tile-name">OTOKI</div>
+          <div class="tile-desc" data-ko="오뚜기 패키지 디자인 정규직" data-en="Packaging Design at OTOKI (Full-time)">Packaging Design at OTOKI (Full-time)</div>
         </div>
-    </nav>
-
-    <section class="h-screen flex flex-col justify-center items-center text-center px-6">
-        <div data-aos="fade-up">
-            <h1 class="text-7xl md:text-[10rem] font-black tracking-tighter leading-none mb-6">OK GEUMBI</h1>
-            <p class="text-lg md:text-2xl font-light text-gray-400 tracking-[0.5em] uppercase">Visual Design & Computer Science</p>
+      </div>
+      <div class="proj-tile t-brick grand-prize" onclick="openCase('brick')">
+        <div class="award-badge gold">2024 Grand Prize</div>
+        <img class="proj-tile-img" src="images/thumb_brickit.jpg" alt="Brick it!">
+        <div class="tile-arrow">↗</div>
+        <div class="proj-tile-overlay">
+          <div class="tile-tags"><span class="tile-tag">UX/UI</span><span class="tile-tag">XR</span></div>
+          <div class="tile-name">Brick it!</div>
+          <div class="tile-desc" data-ko="장기 입원 아동 XR 교육 솔루션 · 의료 XR 해커톤 대상" data-en="XR education for hospitalized children · Grand Prize">XR education for hospitalized children · Grand Prize</div>
         </div>
-    </section>
-
-    <section id="p1" class="py-40 px-6 max-w-7xl mx-auto border-t border-gray-50">
-        <div class="flex flex-col md:flex-row gap-16 items-center">
-            <div class="md:w-2/5" data-aos="fade-right">
-                <span class="project-tag text-orange-500">01. Medical XR Solution</span>
-                <h2 class="text-6xl font-black mb-8 italic uppercase leading-none">Brick it!</h2>
-                <p class="text-gray-500 text-lg leading-relaxed mb-10">2024 의료 XR 해커톤 대상 수상작. 장기 입원 아동들을 위한 가상 환경 블록 코딩 시스템입니다.</p>
-                <div class="inline-block px-6 py-3 bg-orange-50 rounded-xl border border-orange-100 font-bold text-xs text-orange-700">Role: UX/UI Design 50% / 3D Modeling 80%</div>
-            </div>
-            <div class="md:w-3/5 w-full img-box" data-aos="zoom-in">[Brick it! 이미지]</div>
+      </div>
+      <div class="proj-tile t-camomyl" onclick="openCase('camomyl')">
+        <img class="proj-tile-img" src="images/thumb_camomyl.jpg" alt="CAMOMYL">
+        <div class="tile-arrow">↗</div>
+        <div class="proj-tile-overlay">
+          <div class="tile-tags"><span class="tile-tag">UX/UI</span><span class="tile-tag" data-ko="브랜딩" data-en="Branding">Branding</span></div>
+          <div class="tile-name">CAMOMYL</div>
+          <div class="tile-desc" data-ko="섭식장애 케어 앱" data-en="Eating disorder care app">Eating disorder care app</div>
         </div>
-    </section>
-
-    <section id="p2" class="py-40 bg-gray-950 text-white px-6">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row-reverse gap-16 items-center">
-            <div class="md:w-2/5 text-right" data-aos="fade-left">
-                <span class="project-tag text-blue-400">02. VR Platform</span>
-                <h2 class="text-6xl font-black mb-8 italic uppercase leading-none">AutoInsight</h2>
-                <p class="text-gray-400 text-lg leading-relaxed mb-10 opacity-80">사회 초년생을 위한 신차 구매 가이드 플랫폼. 오프라인 매장 방문 없이 차량을 3D로 체험합니다.</p>
-            </div>
-            <div class="md:w-3/5 w-full img-box bg-gray-900 border-gray-800" data-aos="zoom-in">[AutoInsight 이미지]</div>
+      </div>
+      <div class="proj-tile t-auto" onclick="openCase('auto')">
+        <img class="proj-tile-img" src="images/thumb_autoinsight.jpg" alt="Auto Insight">
+        <div class="tile-arrow">↗</div>
+        <div class="proj-tile-overlay">
+          <div class="tile-tags"><span class="tile-tag">UX/UI</span><span class="tile-tag">VR</span></div>
+          <div class="tile-name">Auto Insight</div>
+          <div class="tile-desc" data-ko="신차 구매 VR 플랫폼" data-en="VR car-buying platform">VR car-buying platform</div>
         </div>
-    </section>
-
-    <section id="p3" class="py-40 px-6 max-w-7xl mx-auto border-t border-gray-50">
-        <div class="flex flex-col md:flex-row gap-16 items-center">
-            <div class="md:w-2/5" data-aos="fade-right">
-                <span class="project-tag text-pink-500">03. Mobile App Service</span>
-                <h2 class="text-6xl font-black mb-8 italic uppercase leading-none">CAMOMYL</h2>
-                <p class="text-gray-500 text-lg leading-relaxed mb-10">마음의 평온을 돕는 심리 케어 서비스. 사용자 경험을 최우선으로 고려한 모바일 인터페이스 디자인입니다.</p>
-            </div>
-            <div class="md:w-3/5 w-full img-box" data-aos="zoom-in">[CAMOMYL 이미지]</div>
+      </div>
+      <div class="proj-tile t-cibus" onclick="openCase('cibus')">
+        <div class="award-badge program">KOCCA Academy</div>
+        <div class="proj-tile-emoji">🏰</div>
+        <div class="tile-arrow">↗</div>
+        <div class="proj-tile-overlay">
+          <div class="tile-tags"><span class="tile-tag">3D</span><span class="tile-tag">VR</span></div>
+          <div class="tile-name">Cibus Odyssey</div>
+          <div class="tile-desc" data-ko="VR 파티 보드게임 · KOCCA 선발" data-en="VR party board game · KOCCA Selected">VR party board game · KOCCA Selected</div>
         </div>
-    </section>
-
-    <section id="p4" class="py-40 bg-gray-50 px-6">
-        <div class="max-w-7xl mx-auto text-center mb-20" data-aos="fade-up">
-            <span class="project-tag text-purple-600">04. 3D Environment Design</span>
-            <h2 class="text-7xl font-black italic uppercase leading-none">Cibus Odyssey</h2>
+      </div>
+      <div class="proj-tile t-introvert" onclick="openCase('introvert')">
+        <div class="proj-tile-emoji">🌲</div>
+        <div class="tile-arrow">↗</div>
+        <div class="proj-tile-overlay">
+          <div class="tile-tags"><span class="tile-tag">3D</span><span class="tile-tag">XR</span></div>
+          <div class="tile-name">Introvert Village</div>
+          <div class="tile-desc" data-ko="내향인들이 사는 VR 마을" data-en="VR village for introverts">VR village for introverts</div>
         </div>
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="img-box h-[500px] bg-white" data-aos="fade-right">[Main View]</div>
-            <div class="img-box h-[500px] bg-white" data-aos="fade-left">[Detail View]</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-copy">© 2025 Geumbi Ok</div>
+    <div class="footer-back" onclick="window.scrollTo({top:0,behavior:'smooth'})" data-ko="맨 위로 ↑" data-en="Back to top ↑">Back to top ↑</div>
+  </footer>
+</div>
+
+<!-- ══════════════════════
+     WORK
+══════════════════════ -->
+<div id="work" class="page">
+  <div class="work-header">
+    <h2 class="work-title" data-ko="작업" data-en="WORK">WORK</h2>
+  </div>
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all"     onclick="filterProjects('all')">All</button>
+    <button class="filter-btn"        data-filter="uxui"    onclick="filterProjects('uxui')"    data-ko="UX/UI"  data-en="UX/UI">UX/UI</button>
+    <button class="filter-btn"        data-filter="package" onclick="filterProjects('package')" data-ko="패키지" data-en="Package">Package</button>
+    <button class="filter-btn"        data-filter="3d"      onclick="filterProjects('3d')">3D / XR</button>
+    <button class="filter-btn"        data-filter="graphic" onclick="filterProjects('graphic')" data-ko="그래픽" data-en="Graphic">Graphic</button>
+  </div>
+  <div class="work-grid" id="proj-grid">
+    <div class="proj-tile t-otoki" data-cats="package graphic" onclick="openCase('otoki')">
+      <img class="proj-tile-img" src="images/thumb_otoki.jpg" alt="OTOKI">
+      <div class="tile-arrow">↗</div>
+      <div class="proj-tile-overlay">
+        <div class="tile-tags"><span class="tile-tag" data-ko="패키지" data-en="Packaging">Packaging</span><span class="tile-tag" data-ko="그래픽" data-en="Graphic">Graphic</span><span class="tile-tag" data-ko="상업" data-en="Commercial">Commercial</span></div>
+        <div class="tile-name">OTOKI</div>
+        <div class="tile-desc" data-ko="오뚜기 패키지 디자인" data-en="Packaging Design">Packaging Design</div>
+      </div>
+    </div>
+    <div class="proj-tile t-brick grand-prize" data-cats="uxui 3d" onclick="openCase('brick')">
+      <div class="award-badge gold">2024 Grand Prize</div>
+      <img class="proj-tile-img" src="images/thumb_brickit.jpg" alt="Brick it!">
+      <div class="tile-arrow">↗</div>
+      <div class="proj-tile-overlay">
+        <div class="tile-tags"><span class="tile-tag">UX/UI</span><span class="tile-tag">XR</span></div>
+        <div class="tile-name">Brick it!</div>
+        <div class="tile-desc" data-ko="XR 교육 플랫폼 · 의료 XR 해커톤 대상" data-en="XR education platform · Grand Prize">XR education platform · Grand Prize</div>
+      </div>
+    </div>
+    <div class="proj-tile t-camomyl" data-cats="uxui package graphic" onclick="openCase('camomyl')">
+      <img class="proj-tile-img" src="images/thumb_camomyl.jpg" alt="CAMOMYL">
+      <div class="tile-arrow">↗</div>
+      <div class="proj-tile-overlay">
+        <div class="tile-tags"><span class="tile-tag">UX/UI</span><span class="tile-tag" data-ko="브랜딩" data-en="Branding">Branding</span><span class="tile-tag" data-ko="패키지" data-en="Package">Package</span></div>
+        <div class="tile-name">CAMOMYL</div>
+        <div class="tile-desc" data-ko="섭식장애 케어 앱 · 리서치~패키지 전공정" data-en="Eating disorder care app · Full process">Eating disorder care app · Full process</div>
+      </div>
+    </div>
+    <div class="proj-tile t-auto" data-cats="uxui 3d" onclick="openCase('auto')">
+      <img class="proj-tile-img" src="images/thumb_autoinsight.jpg" alt="Auto Insight">
+      <div class="tile-arrow">↗</div>
+      <div class="proj-tile-overlay">
+        <div class="tile-tags"><span class="tile-tag">UX/UI</span><span class="tile-tag">VR</span></div>
+        <div class="tile-name">Auto Insight</div>
+        <div class="tile-desc" data-ko="신차 구매 VR 플랫폼" data-en="VR car-buying platform">VR car-buying platform</div>
+      </div>
+    </div>
+    <div class="proj-tile t-cibus" data-cats="3d" onclick="openCase('cibus')">
+      <div class="award-badge program">KOCCA Academy</div>
+      <div class="proj-tile-emoji">🏰</div>
+      <div class="tile-arrow">↗</div>
+      <div class="proj-tile-overlay">
+        <div class="tile-tags"><span class="tile-tag">UX/UI</span><span class="tile-tag">3D</span><span class="tile-tag">VR</span><span class="tile-tag" data-ko="상업" data-en="Commercial">Commercial</span></div>
+        <div class="tile-name">Cibus Odyssey</div>
+        <div class="tile-desc" data-ko="VR 파티 보드게임 · KOCCA 선발" data-en="VR party board game · KOCCA Selected">VR party board game · KOCCA Selected</div>
+      </div>
+    </div>
+    <div class="proj-tile t-introvert" data-cats="3d" onclick="openCase('introvert')">
+      <div class="proj-tile-emoji">🌲</div>
+      <div class="tile-arrow">↗</div>
+      <div class="proj-tile-overlay">
+        <div class="tile-tags"><span class="tile-tag">3D</span><span class="tile-tag">XR</span><span class="tile-tag">Programming</span></div>
+        <div class="tile-name">Introvert Village</div>
+        <div class="tile-desc" data-ko="내향인들이 사는 VR 마을" data-en="VR village for introverts">VR village for introverts</div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-copy">© 2025 Geumbi Ok</div>
+    <div class="footer-back" onclick="window.scrollTo({top:0,behavior:'smooth'})" data-ko="맨 위로 ↑" data-en="Back to top ↑">Back to top ↑</div>
+  </footer>
+</div>
+
+<!-- ══════════════════════
+     CASE STUDY
+══════════════════════ -->
+<div id="case-study" class="page">
+  <div class="cs-back">
+    <button class="back-btn" onclick="goPage('work')">← <span data-ko="모든 작업" data-en="All Work">All Work</span></button>
+  </div>
+  <div class="cs-hero" id="cs-hero-content"></div>
+  <div class="cs-body" id="cs-body-content"></div>
+  <div id="cs-next-btn"></div>
+</div>
+
+<!-- ══════════════════════
+     ABOUT
+══════════════════════ -->
+<div id="about" class="page">
+  <div class="about-content">
+    <div class="about-sidebar">
+      <div class="about-name">Geumbi Ok</div>
+      <div class="about-role" data-ko="그래픽 · UX/UI · 패키지 디자이너" data-en="Graphic · UX/UI · Package">Graphic · Package · UX/UI Designer</div>
+      <div class="about-contact">
+        <a href="mailto:gb122500@gmail.com">gb122500@gmail.com</a>
+        <a href="tel:+821098282525">📞 +82 10 9828 2525</a>
+        <a>📍 Seoul, South Korea</a>
+      </div>
+    </div>
+    <div class="about-main">
+      <p class="about-bio" data-ko="디자인을 통해 기획이 알맞은 사용자와 연결되는 감각을 좋아합니다. 홍익대학교에서 시각디자인 및 컴퓨터공학 복수전공으로 졸업했습니다. 상업 패키지부터 UX/UI, 3D/XR까지 폭넓은 디자인 경험을 쌓아왔습니다." data-en="I enjoy the sense of connecting ideas to the right audience through design. Graduated from Hongik University with a double major in Visual Communication Design and Computer Science. I've built broad experience across commercial packaging, UX/UI, and 3D/XR design.">I enjoy the sense of connecting ideas to the right audience through design. I graduated from Hongik University with a double major in Visual Communication Design and Computer Science. I've built broad experience across commercial packaging, UX/UI, and 3D/XR design.</p>
+
+      <div class="about-section">
+        <div class="about-section-title" data-ko="경력" data-en="Experience">Experience</div>
+        <div class="about-exp-list">
+          <div><div class="about-exp-role" data-ko="패키지 디자이너 (정규직)" data-en="Package Designer (Full-time)">Package Designer (Full-time)</div><div class="about-exp-place">OTOKI (오뚜기)</div><div class="about-exp-period">Dec 2024 – Dec 2025</div></div>
+          <div><div class="about-exp-role" data-ko="디자인 그룹장" data-en="Design Group Head">Design Group Head</div><div class="about-exp-place">XREAL</div><div class="about-exp-period">Dec 2023 – Aug 2024</div></div>
+          <div><div class="about-exp-role" data-ko="3D 디자이너 (계약)" data-en="3D Designer (Contract)">3D Designer (Contract)</div><div class="about-exp-place">Ludens Inc.</div><div class="about-exp-period">Dec 2023 – Sep 2024</div></div>
+          <div><div class="about-exp-role" data-ko="프로젝트 기반 디자이너 (인턴)" data-en="Project-based Designer (Intern)">Project-based Designer (Intern)</div><div class="about-exp-place">Omnicorn Inc.</div><div class="about-exp-period">Jul – Aug 2024</div></div>
+          <div><div class="about-exp-role" data-ko="학부 연구원" data-en="Undergraduate Research Assistant">Undergraduate Research Assistant</div><div class="about-exp-place">Samsung Electronics</div><div class="about-exp-period">Jul – Nov 2024</div></div>
         </div>
-    </section>
+      </div>
 
-    <section id="p5" class="py-40 px-6 max-w-7xl mx-auto border-t border-gray-100">
-        <div class="flex flex-col md:flex-row-reverse gap-16 items-center">
-            <div class="md:w-2/5 text-right" data-aos="fade-left">
-                <span class="project-tag text-emerald-700">05. Data Research</span>
-                <h2 class="text-6xl font-black mb-8 italic uppercase leading-none">Research</h2>
-                <p class="text-gray-500 text-lg leading-relaxed mb-10">컴퓨터공학적 관점의 데이터 분석과 시각 디자인적 인사이트를 결합한 연구 프로젝트입니다.</p>
-            </div>
-            <div class="md:w-3/5 w-full img-box" data-aos="zoom-in">[Research 데이터 이미지]</div>
+      <div class="about-section">
+        <div class="about-section-title" data-ko="학력" data-en="Education">Education</div>
+        <div><div class="about-exp-role">Hongik University</div><div class="about-exp-place" data-ko="시각디자인 · 컴퓨터공학 복수전공" data-en="Visual Communication Design · Computer Science (Double Major)">Visual Communication Design · Computer Science (Double Major)</div><div class="about-exp-period">2019 – 2025</div></div>
+      </div>
+
+      <div class="about-section">
+        <div class="about-section-title" data-ko="수상" data-en="Awards">Awards</div>
+        <div class="about-exp-list">
+          <div><div class="about-exp-role">Mintel Most Innovative 2026, F&amp;B APAC</div><div class="about-exp-period" data-ko="OTOKI 고단백 컵누들" data-en="OTOKI High-protein Cup Noodle">OTOKI 고단백 컵누들</div></div>
+          <div><div class="about-exp-role" data-ko="대상 (1위), 2024 의료 XR 해커톤" data-en="Grand Prize, 2024 Medical XR Hackathon">Grand Prize - 2024 Medical XR Hackathon</div><div class="about-exp-period">SNUH · Jan 2024 · Brick it!</div></div>
         </div>
-    </section>
+      </div>
 
-    <footer class="py-40 text-center border-t border-gray-50">
-        <p class="text-4xl font-black mb-6 italic">LET'S CONNECT</p>
-        <p class="text-gray-400 font-bold">goldrain125@naver.com</p>
-        <p class="mt-20 text-[10px] text-gray-300 font-bold uppercase tracking-[0.5em]">© 2026 OK GEUMBI. ALL RIGHTS RESERVED.</p>
-    </footer>
+      <div class="about-section">
+        <div class="about-section-title" data-ko="스킬" data-en="Skills">Skills</div>
+        <div class="skills-grid">
+          <div class="skill-group"><div class="skill-group-name" data-ko="디자인 툴" data-en="Design Tools">Design Tools</div><div class="skill-list">Figma<br>Photoshop<br>Illustrator<br>After Effects<br>Midjourney<br>Firefly<br></div></div>
+          <div class="skill-group"><div class="skill-group-name">3D / XR</div><div class="skill-list">Blender<br>Substance Painter<br>Unity<br>C#</div></div>
+          <div class="skill-group"><div class="skill-group-name" data-ko="기타" data-en="Other">Other</div><div class="skill-list">Git<br>JavaScript<br>Flutter</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer><div class="footer-copy">© 2025 Geumbi Ok</div></footer>
+</div>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>AOS.init({ duration: 1000, once: false });</script>
+<!-- ══════════════════════
+     CONTACT
+══════════════════════ -->
+<div id="contact" class="page">
+  <div class="contact-content">
+    <div class="contact-eyebrow" data-ko="연락하기" data-en="Get in Touch">Get in Touch</div>
+    <h2 class="contact-title" data-ko="함께 만들어봐요." data-en="Let's make something together.">Let's make something<br>together.</h2>
+    <p class="contact-text" data-ko="새로운 기회, 협업, 또는 그냥 인사도 환영합니다. 편하게 이메일 주세요." data-en="Open to new opportunities, collaborations, or just a hello. Drop me an email anytime.">Open to new opportunities, collaborations, or just a hello. Drop me an email anytime.</p>
+    <a class="contact-email" href="mailto:gb122500@gmail.com">gb122500@gmail.com</a>
+    <div class="contact-links">
+      <span class="contact-link">📞  +82 10 9828 2525</span>
+      <span class="contact-link">📍 Seoul, South Korea</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════
+     DATA + LOGIC
+══════════════════════ -->
+<script>
+const CASES = {
+  otoki:{
+    next:'brick',
+    eyebrow:['Package Design','Commercial','Full-time · 2024–2025'],
+    title:{ko:'OTOKI\n패키지 디자인',en:'OTOKI\nPackage Design'},
+    subtitle:{ko:'국내 식품 브랜드 오뚜기의 패키지 디자이너로, 라면·베이킹 믹스·식용유 라인의 신제품 개발부터 인쇄 감리까지 전 공정을 담당했습니다.',en:"As a full-time package designer at one of Korea's food brands, I owned the complete design lifecycle — from new product development to printing supervision — across noodles, baking mixes, and edible oil lines."},
+    meta:[
+      {label:{ko:'역할',en:'Role'},val:{ko:'디자인 컨셉 & 리뉴얼\n푸드 스타일링 & 리터칭\n카피 & 아트워크\n인쇄 감리',en:'Design Concept & Renewal\nFood Styling & Retouching\nCopy & Artwork\nPress Check'}},
+      {label:{ko:'툴',en:'Tools'},val:{ko:'Photoshop · Illustrator\nFirefly · Midjourney',en:'Photoshop · Illustrator\nFirefly · Midjourney'}},
+      {label:{ko:'기간',en:'Duration'},val:{ko:'2024–2025\n(정규직)',en:'2024–2025\n(Full-time)'}},
+      {label:{ko:'카테고리',en:'Category'},val:{ko:'라면 · 베이킹 믹스\n식용유류',en:'Noodles · Baking Mix\nEdible Oil'}}
+    ],
+    sections:[
+      {sectionLabel:{ko:'',en:''},title:{ko:'FRESCO 소프트 버터 — 구조·비주얼 리디자인',en:'FRESCO Soft Butter — Structural & Visual Redesign'},text:{ko:'2012년부터 유지된 종이 기반 패키지는 냉장 보관 시 내구성이 낮고 오메가-3 기능성의 가치 전달이 약하다는 문제가 있었습니다. 리지드 케이스로 교체해 내구성을 높이고, 텍스처 중심의 현대적 비주얼로 브랜드 아이덴티티를 리뉴얼했습니다.',en:'The paper-based packaging used since 2012 had poor cold-storage durability and failed to communicate the Omega-3 value proposition. I redesigned the structure to a rigid case, modernized the visuals with a texture-focused approach, and applied high-fidelity IML and reverse-side film printing.'},highlight:{ko:'리지드 케이스 교체 → 냉장 내구성 향상 · 텍스처 중심 비주얼 현대화 · 고해상도 IML & 역면 필름 인쇄 적용',en:'Switched to rigid case → enhanced cold storage durability · Modernized texture-focused visuals · Applied high-fidelity IML & reverse-side film printing'}},
+      {sectionLabel:{ko:'',en:''},title:{ko:'고단백 컵누들 — 신제품 디자인 & 카피라이팅',en:'High-protein Cup Noodle — New Product Design'},text:{ko:'두부피로 만든 새로운 국수 라인의 브랜드 아이덴티티를 구축했습니다. 모 브랜드의 시각적 일관성을 유지하면서도 새로운 라인만의 차별성을 표현하는 로고와 패키지를 개발했습니다. Mintel 2026 Most Innovative F&B APAC 부문 수상작입니다.',en:"Established the brand identity for a new tofu-skin noodle line. I balanced the parent brand's visual consistency while creating a distinctive look for the new product. Winner of Mintel 2026 Most Innovative F&B, APAC."}},
+      {sectionLabel:{ko:'',en:''},title:{ko:'핫케이크 믹스 — AI 비주얼 리파이닝 & 인쇄 감리',en:'Pancake Mix — AI-Assisted Visual Refinement & Press Supervision'},text:{ko:'Adobe Firefly와 Midjourney를 활용해 현실감 있는 푸드 텍스처와 최적화된 토핑 배치를 구현했습니다. 인쇄 현장에서 스팟 컬러, CMYK 튜닝, 그라비아 & 알루미늄 인쇄 품질을 직접 감리했습니다.',en:'Used Adobe Firefly and Midjourney to create realistic food textures and optimize topping arrangements. Supervised on-press production including spot color confirmation, CMYK tuning for food imagery, and Gravure & Aluminum print quality.'},pills:['Adobe Firefly','Midjourney','Gravure Print','IML','CMYK Supervision']}
+    ]
+  },
+  brick:{
+    next:'camomyl',
+    eyebrow:['UX/UI','XR','★ Grand Prize — 2024 Medical XR Hackathon'],
+    title:{ko:'Brick it!\n장기 입원 아동 교육 서비스',en:'Brick it!\nXR Education for Hospitalized Children'},
+    subtitle:{ko:'장기 입원 아동의 교육 공백과 감정적 고립 문제를 해결하는 XR 기반 블록 코딩 교육 플랫폼. 2024 의료 XR 해커톤 대상 수상.',en:'An XR educational platform addressing educational gaps and emotional isolation for long-term hospitalized children — through block-based coding. Grand Prize, 2024 Medical XR Hackathon.'},
+    meta:[
+      {label:{ko:'역할',en:'Role'},val:{ko:'아이데이션 30%\nUX/UI 디자인 50%\n3D 모델링 80%',en:'Ideation 30%\nUX/UI Design 50%\n3D Modelling 80%'}},
+      {label:{ko:'툴',en:'Tools'},val:{ko:'Figma · Blender · Unity',en:'Figma · Blender · Unity'}},
+      {label:{ko:'기간',en:'Duration'},val:{ko:'2024',en:'2024'}},
+      {label:{ko:'팀',en:'Team'},val:{ko:'팀 프로젝트',en:'Team Project'}}
+    ],
+    sections:[
+      {sectionLabel:{ko:'',en:''},title:{ko:'병실 밖에 갇힌 아이들',en:'Children Confined Beyond the Ward'},text:{ko:'장기 입원 아동은 반복적인 일상, 제한된 사회적 상호작용, 정규 교육의 부재라는 세 가지 문제를 동시에 마주합니다.',en:'Long-term hospitalized children face three compounding problems: repetitive daily routine, limited social interaction, and lack of formal education.'},highlight:{ko:'반복적 일상 → 새로운 가상 공간 탐험 / 제한된 사회성 → 창작물을 통한 소통 / 교육 공백 → 블록 코딩 기반 논리 교육',en:'Repetitive routine → Virtual space exploration / Limited social interaction → Sharing through creations / Education gap → Block-coding logic curriculum'}},
+      {sectionLabel:{ko:'',en:''},title:{ko:'블록 코딩으로 세상을 탐험하다',en:'Explore the World Through Block Coding'},text:{ko:'Brick it!은 아이들이 블록 코딩으로 직접 알고리즘을 만들고 가상 세계를 탐험하는 XR 교육 게임입니다. 보호자는 학습 진행 상황을 모니터링하고 새 퀘스트를 선택할 수 있습니다.',en:'Brick it! is an XR educational game where children create algorithms through block coding to explore virtual worlds. Guardians can monitor learning progress and select new educational quests.'}},
+      {sectionLabel:{ko:'',en:''},title:{ko:'UX 원칙: 접근성, 정보 위계, 참여도',en:'UX Principles: Accessibility, Hierarchy, Engagement'},text:{ko:'웹 기반 플랫폼과 XR 통합을 고려해 접근하기 쉬운 UI, 명확한 정보 위계, 아이들의 참여를 유도하는 인터랙션 패턴을 중심으로 설계했습니다.',en:'Designed around accessible UI, clear information hierarchy, and engaging interaction patterns for a web-based platform with XR integration.'},pills:['Figma','Blender','Unity','Accessible UI','XR Integration']}
+    ]
+  },
+  camomyl:{
+    next:'auto',
+    eyebrow:['UX/UI','Branding','Package Design'],
+    title:{ko:'CAMOMYL\n섭식장애 케어 앱',en:'CAMOMYL\nEating Disorder Care App'},
+    subtitle:{ko:'섭식장애 환자를 위한 게이미피케이션 모바일 앱. 아이디어부터 리서치, UX, 와이어프레임, 캐릭터 디자인, 패키지까지의 브랜드 경험을 설계했습니다.',en:'A gamified mobile app for eating disorder recovery — spanning user research, UX design, character creation, and full brand expression across packaging and touchpoints.'},
+    meta:[
+      {label:{ko:'역할',en:'Role'},val:{ko:'아이데이션 30%\nUX/UI 30%\n캐릭터 디자인 20%\n패키지 50%',en:'Ideation 30%\nUX/UI 30%\nCharacter Design 20%\nPackage 50%'}},
+      {label:{ko:'툴',en:'Tools'},val:{ko:'Figma · Photoshop\nIllustrator · After Effects',en:'Figma · Photoshop\nIllustrator · After Effects'}},
+      {label:{ko:'기간',en:'Duration'},val:{ko:'2023',en:'2023'}},
+      {label:{ko:'팀',en:'Team'},val:{ko:'팀 프로젝트',en:'Team Project'}}
+    ],
+    sections:[
+      {sectionLabel:{ko:'',en:''},title:{ko:'섭식장애 사용자 여정 매핑',en:'Mapping the Eating Disorder User Journey'},text:{ko:'섭식장애 환자의 사용자 여정을 매핑해 기존 다이어트·정신건강 앱의 미충족 니즈를 파악했습니다. 전문가, 섭식장애 경험자 3인, 다이어트 앱 사용자를 대상으로 프로토타입 검증을 진행했습니다.',en:'Mapped the user journey of patients with eating disorders to identify gaps in existing diet and mental health apps. Validated prototypes with a mental health expert, 3 individuals with eating disorder experience, and general diet-logging app users.'},highlight:{ko:'기존 앱의 공통 부재: 섭식장애 특화 케어 / 감정-식사 통합 기록 / 병원 연계 기능',en:'Key gaps: eating-disorder-specific care / integrated emotional & dietary logging / hospital referral integration'}},
+      {sectionLabel:{ko:'',en:''},title:{ko:'레벨·점수로 개인화 가이드 제공',en:'Personalized Guidance Through Level & Score'},text:{ko:'사용자의 레벨과 점수를 기반으로 맞춤 식단과 감정 웰니스 팁을 제공합니다. 사진 분석 기반 식사 기록, 주간·월간 통계, 빌리지 기능과 병원 기능을 결합했습니다.',en:"Provides personalized diet and emotional wellness tips based on the user's level and activity history. Features photo-based meal logging, weekly/monthly statistics, a Village feature for social interaction, and a Hospital feature for professional support."}},
+      {sectionLabel:{ko:'',en:''},title:{ko:'캐릭터부터 패키지까지',en:'From Character to Packaging'},text:{ko:'CAMOMYL의 브랜드 세계관을 캐릭터 디자인, 식사 패키지, 꿀병 라벨, 다이어리 등 실물 굿즈까지 확장했습니다.',en:'Extended the CAMOMYL brand world to physical packaging — meal boxes, honey jar labels, and a food diary — maintaining a consistent mint green and warm orange identity.'},pills:['캐릭터 디자인','패키지 디자인','브랜드 IA','UX 리서치','프로토타입 검증']}
+    ]
+  },
+  auto:{
+    next:'cibus',
+    eyebrow:['UX/UI','VR','Brand Identity'],
+    title:{ko:'Auto Insight\n신차 구매 VR 플랫폼',en:'Auto Insight\nVR Car-Buying Platform'},
+    subtitle:{ko:'초보 구매자를 위한 VR 신차 구매 플랫폼. 복잡한 옵션 선택과 비용 계산을 몰입형 시뮬레이션으로 단순화했습니다.',en:"A VR car-buying platform for first-time buyers — simplifying complex option selection and cost calculation through immersive simulation."},
+    meta:[
+      {label:{ko:'역할',en:'Role'},val:{ko:'아이데이션 20%\n3D 작업 100%\nUX/UI 디자인 30%',en:'Ideation 20%\n3D Works 100%\nUX/UI Design 30%'}},
+      {label:{ko:'툴',en:'Tools'},val:{ko:'Blender · Unity\nFigma · Photoshop',en:'Blender · Unity\nFigma · Photoshop'}},
+      {label:{ko:'기간',en:'Duration'},val:{ko:'2023',en:'2023'}},
+      {label:{ko:'팀',en:'Team'},val:{ko:'팀 프로젝트',en:'Team Project'}}
+    ],
+    sections:[
+      {sectionLabel:{ko:'',en:''},title:{ko:'첫 차 구매의 장벽',en:'Barriers to the First Car Purchase'},text:{ko:'초보 구매자는 다양한 옵션 선택, 시승 제약, 복잡한 비용 계산 문제를 경험합니다. 커뮤니티 리서치를 통해 세부 옵션 선택 단계와 비용 계산 단계에서 가장 많은 어려움이 발생함을 확인했습니다.',en:'First-time buyers face four key pain points: limited test drives, lack of option knowledge, anxiety over test driving, and unintuitive cost comparison.'},highlight:{ko:'옵션 지식 부족 / 시승 제약 / 직관적이지 않은 비용 비교 → VR 몰입형 시뮬레이션으로 해결',en:'Lack of option knowledge / Limited test drives / Unintuitive cost comparison → Solved through VR immersive simulation'}},
+      {sectionLabel:{ko:'',en:''},title:{ko:'인터랙티브 VR 시뮬레이션',en:'Interactive VR Simulation'},text:{ko:'풀 3D 렌더링 기반 인터랙티브 구매 여정, 물리적·시간적 제약 없는 시승, 몰입형 옵션 프리뷰의 세 가지 방향으로 솔루션을 구현했습니다.',en:'Three solution directions: an interactive purchase journey powered by full 3D rendering, test-driving without physical or time constraints, and intuitive option previews via immersive simulation.'},pills:['Blender','Unity','Figma','VR UX','Brand IA']}
+    ]
+  },
+  cibus:{
+    next:'introvert',
+    eyebrow:['3D','VR Game','KOCCA New Content Academy 2nd Batch'],
+    title:{ko:'Cibus Odyssey\nVR 파티 보드게임',en:'Cibus Odyssey\nVR Party Board Game'},
+    subtitle:{ko:'디저트 테마의 VR 파티 보드게임. KOCCA 뉴콘텐츠아카데미 2기로 선발되어 3D 에셋 제작, 애니메이션, 레벨 디자인을 담당했습니다.',en:'A dessert-themed VR party board game. Selected for KOCCA New Content Academy (2nd cohort) — responsible for 3D asset creation, animation, and level design from concept to launch.'},
+    meta:[
+      {label:{ko:'역할',en:'Role'},val:{ko:'3D 모델링 60%\n애니메이션 30%\n레벨 디자인 30%',en:'3D Modelling 60%\nAnimation 30%\nLevel Design 30%'}},
+      {label:{ko:'툴',en:'Tools'},val:{ko:'Blender · Substance Painter\nUnity · Git',en:'Blender · Substance Painter\nUnity · Git'}},
+      {label:{ko:'기간',en:'Duration'},val:{ko:'2023–2024',en:'2023–2024'}},
+      {label:{ko:'선발',en:'Selected'},val:{ko:'KOCCA\n뉴콘텐츠아카데미 2기',en:'KOCCA\nNew Content Academy'}}
+    ],
+    sections:[
+      {sectionLabel:{ko:'',en:''},title:{ko:'디저트 세계를 달리는 VR 게임',en:'Racing Through a Dessert World in VR'},text:{ko:'아이스크림 맵, 얼음 신전, 과자 마을 등 디저트 테마의 다양한 맵으로 구성된 VR 파티 보드게임입니다. VR 렌더링에 최적화된 로우폴리 모델링과 싱글 텍스처 매핑을 적용했습니다.',en:'A VR party board game across dessert-themed maps — ice cream fields, ice temples, and candy towns. Optimized for VR rendering through low-polygon modeling and single-texture mapping.'}},
+      {sectionLabel:{ko:'',en:''},title:{ko:'에셋 제작 & Unity 협업',en:'Asset Production & Unity Collaboration'},text:{ko:'얼음 신전, 눈의 여신 Nivis, 왕관 아이템 등 메인 3D 에셋을 제작했습니다. Unity와 Git을 활용해 개발팀과 협업하며 FBX 및 텍스처를 Unity 프리팹으로 변환하고 씬을 구성했습니다.',en:'Created main 3D assets including the Ice Temple, Snow Goddess Nivis, and crown items. Collaborated with the dev team via Unity and Git — converting FBX and textures into Unity prefabs and building scenes.'},pills:['Blender','Substance Painter','Unity','Git','Low-poly Modelling','VR Optimization']}
+    ]
+  },
+  introvert:{
+    next:'otoki',
+    eyebrow:['3D','XR','VR Game Development'],
+    title:{ko:'Introvert Village\n내향인을 위한 VR 마을',en:'Introvert Village\nA VR World for Introverts'},
+    subtitle:{ko:'내향인 마을에 도착한 당신, 그들과의 소통 방식은 조금 특별합니다. VR 미디어 인터랙션 아트. 세계관 설계, 3D 환경 모델링, 프로그래밍 및 인터랙션 디자인을 담당했습니다.',en:"You've arrived in a village of introverts — and communication here is a little different. A VR interactive media art piece. I handled world-building, 3D environment modeling, programming, and interaction design."},
+    meta:[
+      {label:{ko:'역할',en:'Role'},val:{ko:'3D 환경 모델링\n레벨 디자인\n인터랙션 설계',en:'3D Environment Modelling\nLevel Design\nInteraction Design'}},
+      {label:{ko:'툴',en:'Tools'},val:{ko:'Blender · Unity\nSubstance Painter · Illustrator',en:'Blender · Unity\nSubstance Painter · Illustrator'}},
+      {label:{ko:'기간',en:'Duration'},val:{ko:'2023',en:'2023'}},
+      {label:{ko:'타입',en:'Type'},val:{ko:'VR 게임 개발',en:'VR Game Development'}}
+    ],
+    sections:[
+      {sectionLabel:{ko:'',en:''},title:{ko:'',en:''},text:{ko:'캐릭터를 찾아 대화 인터랙션을 통해 진행되는 게임 전개 대신, 쪽지 형태로만 소통하는 수줍은 전개를 선택했습니다. 최근 유행이었던 MBTI의 Introvert(내향성)를 주제로, NPC와 쪽지를 주고받으며 친밀도를 쌓아가는 VR 게임입니다. 게임 진행에 따라 마을 곳곳에 주민들의 쪽지가 생겨나고, 어떤 답장을 하느냐에 따라 각 NPC와의 친밀도와 게임 결과가 달라집니다.',en:'Instead of direct dialogue interactions, players communicate only through hidden notes — a shy, quiet way of connecting. Inspired by the MBTI Introvert type, this VR game has you exchanging notes with village NPCs to build intimacy. Notes appear across the village as you progress, and your replies determine each relationship and outcome.'},pills:['Blender','Unity','Substance Painter','Illustrator','Level Design','World-building']}
+    ]
+  }
+};
+
+let currentLang = 'ko';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b =>
+    b.classList.toggle('active', b.textContent.toLowerCase() === lang)
+  );
+  document.querySelectorAll('[data-'+lang+']').forEach(el => {
+    el.textContent = el.getAttribute('data-'+lang);
+  });
+  if (document.getElementById('case-study').classList.contains('active') && window._currentCase) {
+    renderCase(window._currentCase);
+  }
+}
+
+function goPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const t = document.getElementById(id);
+  if (t) { t.classList.add('active'); window.scrollTo(0,0); }
+  document.querySelectorAll('.nav-link').forEach(l =>
+    l.classList.toggle('active', l.dataset.nav === id)
+  );
+}
+
+function filterProjects(cat) {
+  document.querySelectorAll('.filter-btn').forEach(b =>
+    b.classList.toggle('active', b.dataset.filter === cat)
+  );
+  document.querySelectorAll('#proj-grid .proj-tile').forEach(card => {
+    if (cat === 'all') { card.style.display=''; return; }
+    const cats = (card.dataset.cats||'').split(' ');
+    card.style.display = cats.includes(cat) ? '' : 'none';
+  });
+}
+
+function openCase(id) {
+  window._currentCase = id;
+  renderCase(id);
+  goPage('case-study');
+}
+
+function renderCase(id) {
+  const d = CASES[id];
+  const L = currentLang;
+  const hero  = document.getElementById('cs-hero-content');
+  const body  = document.getElementById('cs-body-content');
+  const nextEl = document.getElementById('cs-next-btn');
+
+  const titleLines = (d.title[L]||d.title.en).split('\n');
+  hero.innerHTML = `
+    <div class="cs-eyebrow">${d.eyebrow.join(' · ')}</div>
+    <h1 class="cs-title">${titleLines.map((l,i)=>i===1?`<span style="font-weight:600;color:var(--ink2)">${l}</span>`:l).join('<br>')}</h1>
+    <p class="cs-subtitle">${d.subtitle[L]||d.subtitle.en}</p>
+    <div class="cs-meta">
+      ${d.meta.map(m=>`<div class="cs-meta-item"><div class="cs-meta-label">${m.label[L]||m.label.en}</div><div class="cs-meta-val">${(m.val[L]||m.val.en).replace(/\n/g,'<br>')}</div></div>`).join('')}
+    </div>
+  `;
+
+  body.innerHTML = d.sections.map(s => {
+    const hi = s.highlight ? `<div class="cs-highlight">${s.highlight[L]||s.highlight.en}</div>` : '';
+    const pills = s.pills ? `<div class="cs-pill-row">${s.pills.map(p=>`<span class="cs-pill">${p}</span>`).join('')}</div>` : '';
+    const titleHtml = (s.title[L]||s.title.en) ? `<h2 class="cs-section-title">${s.title[L]||s.title.en}</h2>` : '';
+    const labelHtml = (s.sectionLabel[L]||s.sectionLabel.en) ? `<div class="cs-section-label">${s.sectionLabel[L]||s.sectionLabel.en}</div>` : '';
+    return `
+      <div class="cs-section">
+        ${labelHtml}
+        ${titleHtml}
+        <p class="cs-text">${s.text[L]||s.text.en}</p>
+        ${hi}
+        ${pills}
+      </div>`;
+  }).join('');
+
+  const nd = CASES[d.next];
+  nextEl.innerHTML = `
+    <div class="cs-next" onclick="openCase('${d.next}')">
+      <div>
+        <div class="cs-next-label">${L==='ko'?'다음 프로젝트':'Next Project'}</div>
+        <div class="cs-next-title">${(nd.title[L]||nd.title.en).split('\n')[0]}</div>
+      </div>
+      <div class="cs-next-arrow">→</div>
+    </div>`;
+}
+</script>
 </body>
 </html>
