@@ -55,7 +55,7 @@ nav {
   border-bottom: 0.5px solid var(--border);
 }
 .nav-logo {
-  font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase;
+  font-family: var(--sans); font-size: 14px; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase;
   cursor: pointer; transition: opacity 0.2s;
 }
 .nav-logo:hover { opacity: 0.55; }
@@ -295,7 +295,7 @@ nav {
 .cs-body { max-width: 960px; margin: 0 auto; padding: 0 48px 80px; }
 .cs-section { margin-bottom: 64px; }
 .cs-section-label {
-  font-size: 8px; font-weight: 500; letter-spacing: 0.14em;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.14em;
   text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
   display: flex; align-items: center; gap: 8px;
 }
@@ -459,8 +459,8 @@ footer {
     <span class="nav-link" data-nav="about"   onclick="goPage('about')"   data-ko="소개"  data-en="About">About</span>
     <span class="nav-link" data-nav="contact" onclick="goPage('contact')" data-ko="연락"  data-en="Contact">Contact</span>
     <div class="lang-toggle">
-      <button class="lang-btn" onclick="setLang('en')">EN</button>
-      <button class="lang-btn active" onclick="setLang('ko')">KO</button>
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('ko')">KO</button>
     </div>
   </div>
 </nav>
@@ -529,7 +529,7 @@ footer {
       </div>
       <div class="proj-tile t-cibus" onclick="openCase('cibus')">
         <div class="award-badge program">KOCCA Academy</div>
-        <div class="proj-tile-emoji">🏰</div>
+        <img class="proj-tile-img" src="images/thumb_cibus.jpg" alt="Cibus Odyssey">
         <div class="tile-arrow">↗</div>
         <div class="proj-tile-overlay">
           <div class="tile-tags"><span class="tile-tag">3D</span><span class="tile-tag">VR</span></div>
@@ -538,7 +538,7 @@ footer {
         </div>
       </div>
       <div class="proj-tile t-introvert" onclick="openCase('introvert')">
-        <div class="proj-tile-emoji">🌲</div>
+        <img class="proj-tile-img" src="images/thumb_introvert.jpg" alt="Introvert Village">
         <div class="tile-arrow">↗</div>
         <div class="proj-tile-overlay">
           <div class="tile-tags"><span class="tile-tag">3D</span><span class="tile-tag">XR</span></div>
@@ -737,21 +737,65 @@ const CASES = {
       {sectionLabel:{ko:'',en:''},title:{ko:'핫케이크 믹스 — AI 비주얼 리파이닝 & 인쇄 감리',en:'Pancake Mix — AI-Assisted Visual Refinement & Press Supervision'},text:{ko:'Adobe Firefly와 Midjourney를 활용해 현실감 있는 푸드 텍스처와 최적화된 토핑 배치를 구현했습니다. 인쇄 현장에서 스팟 컬러, CMYK 튜닝, 그라비아 & 알루미늄 인쇄 품질을 직접 감리했습니다.',en:'Used Adobe Firefly and Midjourney to create realistic food textures and optimize topping arrangements. Supervised on-press production including spot color confirmation, CMYK tuning for food imagery, and Gravure & Aluminum print quality.'},pills:['Adobe Firefly','Midjourney','Gravure Print','IML','CMYK Supervision']}
     ]
   },
-  brick:{
-    next:'camomyl',
-    eyebrow:['UX/UI','XR','★ Grand Prize — 2024 Medical XR Hackathon'],
-    title:{ko:'Brick it!\n장기 입원 아동 교육 서비스',en:'Brick it!\nXR Education for Hospitalized Children'},
-    subtitle:{ko:'장기 입원 아동의 교육 공백과 감정적 고립 문제를 해결하는 XR 기반 블록 코딩 교육 플랫폼. 2024 의료 XR 해커톤 대상 수상.',en:'An XR educational platform addressing educational gaps and emotional isolation for long-term hospitalized children — through block-based coding. Grand Prize, 2024 Medical XR Hackathon.'},
-    meta:[
-      {label:{ko:'역할',en:'Role'},val:{ko:'아이데이션 30%\nUX/UI 디자인 50%\n3D 모델링 80%',en:'Ideation 30%\nUX/UI Design 50%\n3D Modelling 80%'}},
-      {label:{ko:'툴',en:'Tools'},val:{ko:'Figma · Blender · Unity',en:'Figma · Blender · Unity'}},
-      {label:{ko:'기간',en:'Duration'},val:{ko:'2024',en:'2024'}},
-      {label:{ko:'팀',en:'Team'},val:{ko:'팀 프로젝트',en:'Team Project'}}
+ brick: {
+    next: 'camomyl',
+    eyebrow: ['UX/UI', 'XR', '★ Grand Prize — 2024 Medical XR Hackathon'],
+    title: {
+      ko: 'Brick it!\n장기 입원 아동 교육 서비스',
+      en: 'Brick it!\nXR Education for Hospitalized Children'
+    },
+    subtitle: {
+      ko: '2024 의료 XR 해커톤 대상 수상작. 블록 코딩 학습을 통해 장기 입원 아동의 학습 공백과 정서적 고립 문제를 해결하는 XR 플랫폼입니다.',
+      en: 'Grand Prize at the 2024 Medical XR Hackathon. An XR platform solving educational gaps and emotional isolation for hospitalized children through block-coding.'
+    },
+    meta: [
+      { label: { ko: '역할', en: 'Role' }, val: { ko: '아이데이션 30%\nUX/UI 디자인 50%\n3D 모델링 80%', en: 'Ideation 30%\nUX/UI Design 50%\n3D Modelling 80%' } },
+      { label: { ko: '툴', en: 'Tools' }, val: { ko: 'Figma · Blender · Unity', en: 'Figma · Blender · Unity' } },
+      { label: { ko: '기간', en: 'Duration' }, val: { ko: '2024', en: '2024' } },
+      { label: { ko: '팀', en: 'Team' }, val: { ko: '팀 프로젝트', en: 'Team Project' } }
     ],
-    sections:[
-      {sectionLabel:{ko:'',en:''},title:{ko:'병실 밖에 갇힌 아이들',en:'Children Confined Beyond the Ward'},text:{ko:'장기 입원 아동은 반복적인 일상, 제한된 사회적 상호작용, 정규 교육의 부재라는 세 가지 문제를 동시에 마주합니다.',en:'Long-term hospitalized children face three compounding problems: repetitive daily routine, limited social interaction, and lack of formal education.'},highlight:{ko:'반복적 일상 → 새로운 가상 공간 탐험 / 제한된 사회성 → 창작물을 통한 소통 / 교육 공백 → 블록 코딩 기반 논리 교육',en:'Repetitive routine → Virtual space exploration / Limited social interaction → Sharing through creations / Education gap → Block-coding logic curriculum'}},
-      {sectionLabel:{ko:'',en:''},title:{ko:'블록 코딩으로 세상을 탐험하다',en:'Explore the World Through Block Coding'},text:{ko:'Brick it!은 아이들이 블록 코딩으로 직접 알고리즘을 만들고 가상 세계를 탐험하는 XR 교육 게임입니다. 보호자는 학습 진행 상황을 모니터링하고 새 퀘스트를 선택할 수 있습니다.',en:'Brick it! is an XR educational game where children create algorithms through block coding to explore virtual worlds. Guardians can monitor learning progress and select new educational quests.'}},
-      {sectionLabel:{ko:'',en:''},title:{ko:'UX 원칙: 접근성, 정보 위계, 참여도',en:'UX Principles: Accessibility, Hierarchy, Engagement'},text:{ko:'웹 기반 플랫폼과 XR 통합을 고려해 접근하기 쉬운 UI, 명확한 정보 위계, 아이들의 참여를 유도하는 인터랙션 패턴을 중심으로 설계했습니다.',en:'Designed around accessible UI, clear information hierarchy, and engaging interaction patterns for a web-based platform with XR integration.'},pills:['Figma','Blender','Unity','Accessible UI','XR Integration']}
+    sections: [
+      {
+        sectionLabel: { ko: 'Problem', en: 'Problem' },
+        title: { ko: '병실 안에 갇힌 아이들', en: 'Children in the Ward' },
+        text: { 
+          ko: '장기 입원 아동은 반복되는 일상, 사회적 교류 제한, 정규 교육 부재라는 세 가지 결핍 상황에 놓여 있습니다.', 
+          en: 'Hospitalized children suffer from repetitive routines, limited social interaction, and a lack of formal education.' 
+        },
+        img: { 
+         src: "images/brickit_0.jpg", 
+         full: true 
+         },
+        highlight: { 
+          ko: '일상 반복 → 가상 탐험 / 사회적 단절 → 창작물 공유 / 교육 공백 → 논리 교육', 
+          en: 'Boredom → Virtual Exploration / Isolation → Sharing Creations / Education Gap → Logic Training' 
+        }
+      },
+      {
+        sectionLabel: { ko: 'Solution', en: 'Solution' },
+        title: { ko: '블록 코딩으로 즐기는 가상 세계', en: 'Virtual World via Block Coding' },
+        text: { 
+          ko: 'VR 환경에서 직접 알고리즘을 설계해 미션을 해결합니다. 보호자는 웹 대시보드로 학습 현황을 확인하고 새로운 교육 퀘스트를 선택할 수 있습니다.', 
+          en: 'Children solve missions by designing algorithms in VR. Guardians monitor progress and select new quests via a web dashboard.' 
+        }
+      },
+      {
+        sectionLabel: { ko: 'Design System', en: 'Design System' },
+        title: { ko: '직관적이고 밝은 디자인 언어', en: 'Intuitive & Bright Design' },
+        text: { 
+          ko: '친근한 LINE Seed Sans 서체와 에너지를 주는 오렌지 컬러를 사용했습니다. XR 환경의 특성을 고려해 입체적이고 직관적인 아이콘 시스템을 구축했습니다.', 
+          en: 'Applied LINE Seed Sans and energetic orange. Developed a 3D icon system for intuitive interaction in the XR environment.' 
+        },
+        pills: ['Figma', 'Blender', 'Unity', 'Accessible UI', 'XR Integration']
+      },
+      {
+        sectionLabel: { ko: 'Experience', en: 'Experience' },
+        title: { ko: '실제 구현 및 플레이 경험', en: 'Implementation & Experience' },
+        text: { 
+          ko: 'Unity로 구현된 가상 공간에서 아이들은 자유롭게 움직이며 논리적인 사고를 배웁니다. 챌린지 성공 시 성취감을 느낄 수 있도록 게이미피케이션 요소를 더했습니다.', 
+          en: 'In a Unity-based virtual space, children learn logical thinking. Gamification elements are added to provide a sense of achievement.' 
+        }
+      }
     ]
   },
   camomyl:{
@@ -879,16 +923,28 @@ function renderCase(id) {
   `;
 
   body.innerHTML = d.sections.map(s => {
+    const imgs = (s.images||[]).map(img =>
+      `<div class="cs-img-block${section.img.full ? ' full' : ''}">
+         ${section.img.src 
+     ? `<img src="${section.img.src}" alt="Section Image" class="cs-section-img">` 
+    : section.img.emoji}
+</div>`
+    ).join('');
     const hi = s.highlight ? `<div class="cs-highlight">${s.highlight[L]||s.highlight.en}</div>` : '';
     const pills = s.pills ? `<div class="cs-pill-row">${s.pills.map(p=>`<span class="cs-pill">${p}</span>`).join('')}</div>` : '';
     const titleHtml = (s.title[L]||s.title.en) ? `<h2 class="cs-section-title">${s.title[L]||s.title.en}</h2>` : '';
     const labelHtml = (s.sectionLabel[L]||s.sectionLabel.en) ? `<div class="cs-section-label">${s.sectionLabel[L]||s.sectionLabel.en}</div>` : '';
+    
     return `
       <div class="cs-section">
         ${labelHtml}
         ${titleHtml}
         <p class="cs-text">${s.text[L]||s.text.en}</p>
         ${hi}
+        ${s.img ? `
+      <div class="cs-img-block">
+        <img src="${s.img}" alt="" class="cs-section-img">
+      </div>` : ''}
         ${pills}
       </div>`;
   }).join('');
