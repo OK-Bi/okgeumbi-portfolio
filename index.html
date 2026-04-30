@@ -294,6 +294,8 @@ nav {
 
 .cs-body { max-width: 960px; margin: 0 auto; padding: 0 48px 80px; }
 .cs-section { margin-bottom: 64px; }
+.cs-section--img-only { margin-top: -15px; margin-bottom: 24px; }
+.cs-section:not(.cs-section--img-only) + .cs-section--img-only { margin-top: -40px; }
 .cs-section-label {
   font-size: 11px; font-weight: 500; letter-spacing: 0.14em;
   text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
@@ -310,6 +312,7 @@ nav {
   padding: 18px 22px; margin: 24px 0;
   font-size: 14px; color: var(--ink); line-height: 1.75;
 }
+.cs-section-img { width:100%; height:100%; object-fit:cover; display:block; border-radius: inherit; }
 .cs-pill-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 22px; }
 .cs-pill {
   font-size: 12px; font-weight: 500; padding: 6px 14px;
@@ -609,7 +612,7 @@ footer {
     </div>
     <div class="proj-tile t-cibus" data-cats="3d" onclick="openCase('cibus')">
       <div class="award-badge program">KOCCA Academy</div>
-      <div class="proj-tile-emoji">🏰</div>
+      <img class="proj-tile-img" src="images/thumb_cibus.jpg" alt="Cibus Odyssey">
       <div class="tile-arrow">↗</div>
       <div class="proj-tile-overlay">
         <div class="tile-tags"><span class="tile-tag">UX/UI</span><span class="tile-tag">3D</span><span class="tile-tag">VR</span><span class="tile-tag" data-ko="상업" data-en="Commercial">Commercial</span></div>
@@ -618,7 +621,7 @@ footer {
       </div>
     </div>
     <div class="proj-tile t-introvert" data-cats="3d" onclick="openCase('introvert')">
-      <div class="proj-tile-emoji">🌲</div>
+     <img class="proj-tile-img" src="images/thumb_introvert.jpg" alt="Introvert Village">
       <div class="tile-arrow">↗</div>
       <div class="proj-tile-overlay">
         <div class="tile-tags"><span class="tile-tag">3D</span><span class="tile-tag">XR</span><span class="tile-tag">Programming</span></div>
@@ -733,8 +736,15 @@ const CASES = {
     ],
     sections:[
       {sectionLabel:{ko:'',en:''},title:{ko:'FRESCO 소프트 버터 — 구조·비주얼 리디자인',en:'FRESCO Soft Butter — Structural & Visual Redesign'},text:{ko:'2012년부터 유지된 종이 기반 패키지는 냉장 보관 시 내구성이 낮고 오메가-3 기능성의 가치 전달이 약하다는 문제가 있었습니다. 리지드 케이스로 교체해 내구성을 높이고, 텍스처 중심의 현대적 비주얼로 브랜드 아이덴티티를 리뉴얼했습니다.',en:'The paper-based packaging used since 2012 had poor cold-storage durability and failed to communicate the Omega-3 value proposition. I redesigned the structure to a rigid case, modernized the visuals with a texture-focused approach, and applied high-fidelity IML and reverse-side film printing.'},highlight:{ko:'리지드 케이스 교체 → 냉장 내구성 향상 · 텍스처 중심 비주얼 현대화 · 고해상도 IML & 역면 필름 인쇄 적용',en:'Switched to rigid case → enhanced cold storage durability · Modernized texture-focused visuals · Applied high-fidelity IML & reverse-side film printing'}},
+      { sectionLabel:{ko:'',en:''}, title:{ko:'',en:''}, text:{ko:'',en:''}, img:{src:'images/otoki/otoki_butter.jpg', full:true} },
       {sectionLabel:{ko:'',en:''},title:{ko:'고단백 컵누들 — 신제품 디자인 & 카피라이팅',en:'High-protein Cup Noodle — New Product Design'},text:{ko:'두부피로 만든 새로운 국수 라인의 브랜드 아이덴티티를 구축했습니다. 모 브랜드의 시각적 일관성을 유지하면서도 새로운 라인만의 차별성을 표현하는 로고와 패키지를 개발했습니다. Mintel 2026 Most Innovative F&B APAC 부문 수상작입니다.',en:"Established the brand identity for a new tofu-skin noodle line. I balanced the parent brand's visual consistency while creating a distinctive look for the new product. Winner of Mintel 2026 Most Innovative F&B, APAC."}},
-      {sectionLabel:{ko:'',en:''},title:{ko:'핫케이크 믹스 — AI 비주얼 리파이닝 & 인쇄 감리',en:'Pancake Mix — AI-Assisted Visual Refinement & Press Supervision'},text:{ko:'Adobe Firefly와 Midjourney를 활용해 현실감 있는 푸드 텍스처와 최적화된 토핑 배치를 구현했습니다. 인쇄 현장에서 스팟 컬러, CMYK 튜닝, 그라비아 & 알루미늄 인쇄 품질을 직접 감리했습니다.',en:'Used Adobe Firefly and Midjourney to create realistic food textures and optimize topping arrangements. Supervised on-press production including spot color confirmation, CMYK tuning for food imagery, and Gravure & Aluminum print quality.'},pills:['Adobe Firefly','Midjourney','Gravure Print','IML','CMYK Supervision']}
+      { sectionLabel:{ko:'',en:''}, title:{ko:'',en:''}, text:{ko:'',en:''}, img:{src:'images/otoki/otoki_noodle.jpg', full:true} },
+      {sectionLabel:{ko:'',en:''},title:{ko:'핫케이크 믹스 — AI 비주얼 리파이닝 & 인쇄 감리',en:'Pancake Mix — AI-Assisted Visual Refinement & Press Supervision'},text:{ko:'Adobe Firefly와 Midjourney를 활용해 현실감 있는 푸드 텍스처와 최적화된 토핑 배치를 구현했습니다. 인쇄 현장에서 스팟 컬러, CMYK 튜닝, 그라비아 & 알루미늄 인쇄 품질을 직접 감리했습니다.',en:'Used Adobe Firefly and Midjourney to create realistic food textures and optimize topping arrangements. Supervised on-press production including spot color confirmation, CMYK tuning for food imagery, and Gravure & Aluminum print quality.'},pills:[]},
+      { sectionLabel:{ko:'',en:''}, title:{ko:'',en:''}, text:{ko:'',en:''}, img:{src:'images/otoki/otoki_pancake.jpg', full:true} },
+      {sectionLabel:{ko:'',en:''},title:{ko:'프로모션 배너 및 굿즈 디자인',en:'Promotional Banner and Merchandise Design'},text:{ko:'',en:''},pills:['']},
+      { sectionLabel:{ko:'',en:''}, title:{ko:'',en:''}, text:{ko:'',en:''}, img:{src:'images/otoki/otoki_md.jpg', full:true} },
+       {sectionLabel:{ko:'',en:''},title:{ko:'',en:''},text:{ko:'',en:''},pills:['Adobe Firefly','Midjourney','Gravure Print','IML','CMYK Supervision']},
+      
     ]
   },
  brick: {
@@ -756,38 +766,28 @@ const CASES = {
     ],
     sections: [
       {
-        sectionLabel: { ko: 'Problem', en: 'Problem' },
-        title: { ko: '병실 안에 갇힌 아이들', en: 'Children in the Ward' },
+        sectionLabel: { ko: 'Problem & Solution', en: 'Problem & Solution' },
+        title: { ko: '병실 안의 장기입원 아동들', en: 'Long-term hospitalized children' },
         text: { 
-          ko: '장기 입원 아동은 반복되는 일상, 사회적 교류 제한, 정규 교육 부재라는 세 가지 결핍 상황에 놓여 있습니다.', 
-          en: 'Hospitalized children suffer from repetitive routines, limited social interaction, and a lack of formal education.' 
+          ko: '장기 입원 아동은 반복되는 일상, 사회적 교류 제한, 정규 교육 부재라는 세 가지 결핍 상황에 놓여 있습니다. VR 환경에서 직접 알고리즘을 설계해 미션을 해결합니다. 보호자는 웹 대시보드로 학습 현황을 확인하고 새로운 교육 퀘스트를 선택할 수 있습니다.', 
+          en: 'Hospitalized children suffer from repetitive routines, limited social interaction, and a lack of formal education.Children solve missions by designing algorithms in VR. Guardians monitor progress and select new quests via a web dashboard.' 
         },
-        img: { 
-         src: "images/brickit_0.jpg", 
-         full: true 
-         },
         highlight: { 
           ko: '일상 반복 → 가상 탐험 / 사회적 단절 → 창작물 공유 / 교육 공백 → 논리 교육', 
           en: 'Boredom → Virtual Exploration / Isolation → Sharing Creations / Education Gap → Logic Training' 
         }
       },
+      { sectionLabel:{}, title:{}, text:{}, img:{src:'images/brickit/brickit_0.jpg', full:true} },
       {
-        sectionLabel: { ko: 'Solution', en: 'Solution' },
-        title: { ko: '블록 코딩으로 즐기는 가상 세계', en: 'Virtual World via Block Coding' },
-        text: { 
-          ko: 'VR 환경에서 직접 알고리즘을 설계해 미션을 해결합니다. 보호자는 웹 대시보드로 학습 현황을 확인하고 새로운 교육 퀘스트를 선택할 수 있습니다.', 
-          en: 'Children solve missions by designing algorithms in VR. Guardians monitor progress and select new quests via a web dashboard.' 
-        }
-      },
-      {
-        sectionLabel: { ko: 'Design System', en: 'Design System' },
-        title: { ko: '직관적이고 밝은 디자인 언어', en: 'Intuitive & Bright Design' },
+        sectionLabel: { },
+        title: {  },
         text: { 
           ko: '친근한 LINE Seed Sans 서체와 에너지를 주는 오렌지 컬러를 사용했습니다. XR 환경의 특성을 고려해 입체적이고 직관적인 아이콘 시스템을 구축했습니다.', 
           en: 'Applied LINE Seed Sans and energetic orange. Developed a 3D icon system for intuitive interaction in the XR environment.' 
         },
-        pills: ['Figma', 'Blender', 'Unity', 'Accessible UI', 'XR Integration']
+        pills: []
       },
+      { sectionLabel:{}, title:{}, text:{}, img:{src:'images/brickit/brickit_1.jpg', full:true} },
       {
         sectionLabel: { ko: 'Experience', en: 'Experience' },
         title: { ko: '실제 구현 및 플레이 경험', en: 'Implementation & Experience' },
@@ -795,7 +795,18 @@ const CASES = {
           ko: 'Unity로 구현된 가상 공간에서 아이들은 자유롭게 움직이며 논리적인 사고를 배웁니다. 챌린지 성공 시 성취감을 느낄 수 있도록 게이미피케이션 요소를 더했습니다.', 
           en: 'In a Unity-based virtual space, children learn logical thinking. Gamification elements are added to provide a sense of achievement.' 
         }
-      }
+      },
+       { sectionLabel:{}, title:{}, text:{}, img:{src:'images/brickit/brickit_3.jpg', full:true} },
+       { sectionLabel:{}, title:{}, text:{}, img:{src:'images/brickit/brickit_4.jpg', full:true} },
+       { sectionLabel:{}, title:{}, text:{}, img:{src:'images/brickit/brickit_5.jpg', full:true} },
+        { sectionLabel:{}, title:{}, text:{}, img:{src:'images/brickit/brickit_6.jpg', full:true} },
+         { sectionLabel:{}, title:{}, text:{}, img:{src:'images/brickit/brickit_7.jpg', full:true} },
+      {
+        sectionLabel: {  },
+        title: { },
+        text: {  },
+        pills: ['Figma', 'Blender', 'Unity', 'Accessible UI', 'XR Integration']
+      },
     ]
   },
   camomyl:{
@@ -811,8 +822,17 @@ const CASES = {
     ],
     sections:[
       {sectionLabel:{ko:'',en:''},title:{ko:'섭식장애 사용자 여정 매핑',en:'Mapping the Eating Disorder User Journey'},text:{ko:'섭식장애 환자의 사용자 여정을 매핑해 기존 다이어트·정신건강 앱의 미충족 니즈를 파악했습니다. 전문가, 섭식장애 경험자 3인, 다이어트 앱 사용자를 대상으로 프로토타입 검증을 진행했습니다.',en:'Mapped the user journey of patients with eating disorders to identify gaps in existing diet and mental health apps. Validated prototypes with a mental health expert, 3 individuals with eating disorder experience, and general diet-logging app users.'},highlight:{ko:'기존 앱의 공통 부재: 섭식장애 특화 케어 / 감정-식사 통합 기록 / 병원 연계 기능',en:'Key gaps: eating-disorder-specific care / integrated emotional & dietary logging / hospital referral integration'}},
+      { sectionLabel:{}, title:{}, text:{}, img:{src:'images/camomyl/camomyl_0.jpg', full:true} },
+      { sectionLabel:{}, title:{}, text:{}, img:{src:'images/camomyl/camomyl_1.jpg', full:true} },
       {sectionLabel:{ko:'',en:''},title:{ko:'레벨·점수로 개인화 가이드 제공',en:'Personalized Guidance Through Level & Score'},text:{ko:'사용자의 레벨과 점수를 기반으로 맞춤 식단과 감정 웰니스 팁을 제공합니다. 사진 분석 기반 식사 기록, 주간·월간 통계, 빌리지 기능과 병원 기능을 결합했습니다.',en:"Provides personalized diet and emotional wellness tips based on the user's level and activity history. Features photo-based meal logging, weekly/monthly statistics, a Village feature for social interaction, and a Hospital feature for professional support."}},
-      {sectionLabel:{ko:'',en:''},title:{ko:'캐릭터부터 패키지까지',en:'From Character to Packaging'},text:{ko:'CAMOMYL의 브랜드 세계관을 캐릭터 디자인, 식사 패키지, 꿀병 라벨, 다이어리 등 실물 굿즈까지 확장했습니다.',en:'Extended the CAMOMYL brand world to physical packaging — meal boxes, honey jar labels, and a food diary — maintaining a consistent mint green and warm orange identity.'},pills:['캐릭터 디자인','패키지 디자인','브랜드 IA','UX 리서치','프로토타입 검증']}
+      { sectionLabel:{}, title:{}, text:{}, img:{src:'images/camomyl/camomyl_2.jpg', full:true} },
+      { sectionLabel:{}, title:{}, text:{}, img:{src:'images/camomyl/camomyl_3.jpg', full:true} },
+      { sectionLabel:{}, title:{}, text:{}, img:{src:'images/camomyl/camomyl_4.jpg', full:true} },
+      {sectionLabel:{ko:'',en:''},title:{ko:'패키지 디자인',en:'Packaging design'},text:{ko:'CAMOMYL의 브랜드 세계관을 캐릭터 디자인, 식사 패키지, 꿀병 라벨, 다이어리 등 실물 굿즈까지 확장했습니다.',en:'Extended the CAMOMYL brand world to physical packaging — meal boxes, honey jar labels, and a food diary — maintaining a consistent mint green and warm orange identity.'},pills:[]},
+      { sectionLabel:{}, title:{}, text:{}, img:{src:'images/camomyl/camomyl_5.jpg', full:true} },
+      { sectionLabel:{}, title:{}, text:{}, img:{src:'images/camomyl/camomyl_6.jpg', full:true} },
+      {sectionLabel:{},title:{},text:{},pills:['Package Design', 'Brand IA', 'UX Research', 'Prototype Verification']},
+      
     ]
   },
   auto:{
@@ -827,15 +847,24 @@ const CASES = {
       {label:{ko:'팀',en:'Team'},val:{ko:'팀 프로젝트',en:'Team Project'}}
     ],
     sections:[
+      { sectionLabel:{ko:'',en:''}, title:{ko:'',en:''}, text:{ko:'',en:''}, img:{src:'images/auto_insight/auto_01.jpg', full:true} },
       {sectionLabel:{ko:'',en:''},title:{ko:'첫 차 구매의 장벽',en:'Barriers to the First Car Purchase'},text:{ko:'초보 구매자는 다양한 옵션 선택, 시승 제약, 복잡한 비용 계산 문제를 경험합니다. 커뮤니티 리서치를 통해 세부 옵션 선택 단계와 비용 계산 단계에서 가장 많은 어려움이 발생함을 확인했습니다.',en:'First-time buyers face four key pain points: limited test drives, lack of option knowledge, anxiety over test driving, and unintuitive cost comparison.'},highlight:{ko:'옵션 지식 부족 / 시승 제약 / 직관적이지 않은 비용 비교 → VR 몰입형 시뮬레이션으로 해결',en:'Lack of option knowledge / Limited test drives / Unintuitive cost comparison → Solved through VR immersive simulation'}},
-      {sectionLabel:{ko:'',en:''},title:{ko:'인터랙티브 VR 시뮬레이션',en:'Interactive VR Simulation'},text:{ko:'풀 3D 렌더링 기반 인터랙티브 구매 여정, 물리적·시간적 제약 없는 시승, 몰입형 옵션 프리뷰의 세 가지 방향으로 솔루션을 구현했습니다.',en:'Three solution directions: an interactive purchase journey powered by full 3D rendering, test-driving without physical or time constraints, and intuitive option previews via immersive simulation.'},pills:['Blender','Unity','Figma','VR UX','Brand IA']}
-    ]
+      { sectionLabel:{ko:'',en:''}, title:{ko:'',en:''}, text:{ko:'',en:''}, img:{src:'images/auto_insight/auto_02.jpg', full:true} },
+      { sectionLabel:{ko:'',en:''}, title:{ko:'',en:''}, text:{ko:'',en:''}, img:{src:'images/auto_insight/auto_03.jpg', full:true} },
+      {sectionLabel:{ko:'',en:''},title:{ko:'인터랙티브 VR 시뮬레이션',en:'Interactive VR Simulation'},text:{ko:'풀 3D 렌더링 기반 인터랙티브 구매 여정, 물리적·시간적 제약 없는 시승, 몰입형 옵션 프리뷰의 세 가지 방향으로 솔루션을 구현했습니다.',en:'Three solution directions: an interactive purchase journey powered by full 3D rendering, test-driving without physical or time constraints, and intuitive option previews via immersive simulation.'},pills:[]},
+      { sectionLabel:{ko:'',en:''}, title:{ko:'',en:''}, text:{ko:'',en:''}, img:{src:'images/auto_insight/auto_04.jpg', full:true} },
+      { sectionLabel:{ko:'',en:''}, title:{ko:'',en:''}, text:{ko:'',en:''}, img:{src:'images/auto_insight/auto_05.jpg', full:true} },
+      { sectionLabel:{ko:'',en:''}, title:{ko:'',en:''}, text:{ko:'',en:''}, img:{src:'images/auto_insight/auto_06.jpg', full:true} },
+     {sectionLabel:{ko:'',en:''},title:{ko:'협업 및 프로세스',en:'Collaboration and Process'},text:{ko:'유니티 활용 및 기능 구현을 위한 개발팀과의 협업, 진행상황 공유 보드입니다.',en:'Development Collaboration Board: Unity Implementation & Progress Tracking.'},pills:[]},
+      { sectionLabel:{ko:'',en:''}, title:{ko:'',en:''}, text:{ko:'',en:''}, img:{src:'images/auto_insight/auto_07.jpg', full:true} },
+      { sectionLabel:{ko:'',en:''}, title:{ko:'',en:''}, text:{ko:'',en:''}, img:{src:'images/auto_insight/auto_08.jpg', full:true} },
+       ]
   },
   cibus:{
     next:'introvert',
     eyebrow:['3D','VR Game','KOCCA New Content Academy 2nd Batch'],
     title:{ko:'Cibus Odyssey\nVR 파티 보드게임',en:'Cibus Odyssey\nVR Party Board Game'},
-    subtitle:{ko:'디저트 테마의 VR 파티 보드게임. KOCCA 뉴콘텐츠아카데미 2기로 선발되어 3D 에셋 제작, 애니메이션, 레벨 디자인을 담당했습니다.',en:'A dessert-themed VR party board game. Selected for KOCCA New Content Academy (2nd cohort) — responsible for 3D asset creation, animation, and level design from concept to launch.'},
+    subtitle:{ko:'디저트 테마의 VR 파티 보드게임. KOCCA 뉴콘텐츠아카데미 2기로 선발되었습니다. 아이스크림 맵, 얼음 신전, 과자 마을 등 디저트 테마의 다양한 맵으로 구성된 VR 파티 보드게임입니다. VR게임 시장에 활성화되어 있지 않은 1인칭 파티형 보드게임을 제작하는 프로젝트입니다.UX에서 집중하고 있는 부분은 최소화된 버튼 사용, 단순한 UI, 실제적인 컨트롤러 인터랙션입니다.VR 렌더링에 최적화된 로우폴리 모델링과 싱글 텍스처 매핑을 적용했습니다.',en:'A dessert-themed VR party board game. Selected for KOCCA New Content Academy (2nd cohort) — responsible for 3D asset creation, ingame UI, animation, and level design from concept to launch. It is a VR party board game that consists of various dessert-themed maps such as ice cream maps, ice temples, and snack villages. What UX focuses on is minimal button use, simple UI, and realistic controller interaction. It has low-poly modeling and single texture mapping optimized for VR rendering.'},
     meta:[
       {label:{ko:'역할',en:'Role'},val:{ko:'3D 모델링 60%\n애니메이션 30%\n레벨 디자인 30%',en:'3D Modelling 60%\nAnimation 30%\nLevel Design 30%'}},
       {label:{ko:'툴',en:'Tools'},val:{ko:'Blender · Substance Painter\nUnity · Git',en:'Blender · Substance Painter\nUnity · Git'}},
@@ -843,23 +872,57 @@ const CASES = {
       {label:{ko:'선발',en:'Selected'},val:{ko:'KOCCA\n뉴콘텐츠아카데미 2기',en:'KOCCA\nNew Content Academy'}}
     ],
     sections:[
-      {sectionLabel:{ko:'',en:''},title:{ko:'디저트 세계를 달리는 VR 게임',en:'Racing Through a Dessert World in VR'},text:{ko:'아이스크림 맵, 얼음 신전, 과자 마을 등 디저트 테마의 다양한 맵으로 구성된 VR 파티 보드게임입니다. VR 렌더링에 최적화된 로우폴리 모델링과 싱글 텍스처 매핑을 적용했습니다.',en:'A VR party board game across dessert-themed maps — ice cream fields, ice temples, and candy towns. Optimized for VR rendering through low-polygon modeling and single-texture mapping.'}},
-      {sectionLabel:{ko:'',en:''},title:{ko:'에셋 제작 & Unity 협업',en:'Asset Production & Unity Collaboration'},text:{ko:'얼음 신전, 눈의 여신 Nivis, 왕관 아이템 등 메인 3D 에셋을 제작했습니다. Unity와 Git을 활용해 개발팀과 협업하며 FBX 및 텍스처를 Unity 프리팹으로 변환하고 씬을 구성했습니다.',en:'Created main 3D assets including the Ice Temple, Snow Goddess Nivis, and crown items. Collaborated with the dev team via Unity and Git — converting FBX and textures into Unity prefabs and building scenes.'},pills:['Blender','Substance Painter','Unity','Git','Low-poly Modelling','VR Optimization']}
+      {sectionLabel:{ko:'',en:''},title:{ko:'에셋 제작 & Unity 협업',en:'Asset Production & Unity Collaboration'},text:{ko:'얼음 신전, 눈의 여신 Nivis, 왕관 아이템 등 메인 3D 에셋 및 컨트롤러 UX를 설계합니다. Unity와 Git을 활용해 개발팀과 협업하며 FBX 및 텍스처를 Unity 프리팹으로 변환하고 씬을 구성했습니다.',en:'Design the main 3D asset and controller UX, including ice temples, Nivis, the goddess of snow, and crown items. Collaborated with the dev team via Unity and Git — converting FBX and textures into Unity prefabs and building scenes.'},pills:[]},
+      { sectionLabel:{}, title:{}, text:{}, img:{src:'images/cibus/cibus_0.jpg', full:true} },
+      { sectionLabel:{}, title:{}, text:{}, img:{src:'images/cibus/cibus_1.jpg', full:true} },
+      { sectionLabel:{}, title:{}, text:{}, img:{src:'images/cibus/cibus_2.jpg', full:true} },
+      {sectionLabel:{ko:'',en:''},title:{ko:'인게임 뷰',en:'Ingame view'},text:{},pills:[]},
+      { sectionLabel:{}, title:{}, text:{}, img:{src:'images/cibus/cibus_3.jpg', full:true} },
+      { sectionLabel:{}, title:{}, text:{}, img:{src:'images/cibus/cibus_4.jpg', full:true} },
+      { sectionLabel:{}, title:{}, text:{}, img:{src:'images/cibus/cibus_5.jpg', full:true} },
+      {sectionLabel:{ko:'',en:''},title:{},text:{},pills:['Blender','Substance Painter','Unity','Git','Low-poly Modelling','VR Optimization']},
     ]
   },
   introvert:{
     next:'otoki',
     eyebrow:['3D','XR','VR Game Development'],
     title:{ko:'Introvert Village\n내향인을 위한 VR 마을',en:'Introvert Village\nA VR World for Introverts'},
-    subtitle:{ko:'내향인 마을에 도착한 당신, 그들과의 소통 방식은 조금 특별합니다. VR 미디어 인터랙션 아트. 세계관 설계, 3D 환경 모델링, 프로그래밍 및 인터랙션 디자인을 담당했습니다.',en:"You've arrived in a village of introverts — and communication here is a little different. A VR interactive media art piece. I handled world-building, 3D environment modeling, programming, and interaction design."},
+    subtitle:{ko:'내향인 마을에 도착한 당신, 그들과의 소통 방식은 조금 특별합니다. VR 미디어 인터랙션 아트. 세계관 설계, 3D 환경 모델링, UX/UI, 프로그래밍 및 인터랙션 디자인을 담당했습니다.',en:"You've arrived in a village of introverts — and communication here is a little different. A VR interactive media art piece. I handled world-building, 3D environment modeling, UX/UI, programming, and interaction design."},
     meta:[
-      {label:{ko:'역할',en:'Role'},val:{ko:'3D 환경 모델링\n레벨 디자인\n인터랙션 설계',en:'3D Environment Modelling\nLevel Design\nInteraction Design'}},
+      {label:{ko:'역할',en:'Role'},val:{ko:'3D 환경 모델링\n레벨 디자인\nUX/UI\n인터랙션 설계',en:'3D Environment Modelling\nLevel Design\nUX/UI\nInteraction Design'}},
       {label:{ko:'툴',en:'Tools'},val:{ko:'Blender · Unity\nSubstance Painter · Illustrator',en:'Blender · Unity\nSubstance Painter · Illustrator'}},
       {label:{ko:'기간',en:'Duration'},val:{ko:'2023',en:'2023'}},
       {label:{ko:'타입',en:'Type'},val:{ko:'VR 게임 개발',en:'VR Game Development'}}
     ],
     sections:[
-      {sectionLabel:{ko:'',en:''},title:{ko:'',en:''},text:{ko:'캐릭터를 찾아 대화 인터랙션을 통해 진행되는 게임 전개 대신, 쪽지 형태로만 소통하는 수줍은 전개를 선택했습니다. 최근 유행이었던 MBTI의 Introvert(내향성)를 주제로, NPC와 쪽지를 주고받으며 친밀도를 쌓아가는 VR 게임입니다. 게임 진행에 따라 마을 곳곳에 주민들의 쪽지가 생겨나고, 어떤 답장을 하느냐에 따라 각 NPC와의 친밀도와 게임 결과가 달라집니다.',en:'Instead of direct dialogue interactions, players communicate only through hidden notes — a shy, quiet way of connecting. Inspired by the MBTI Introvert type, this VR game has you exchanging notes with village NPCs to build intimacy. Notes appear across the village as you progress, and your replies determine each relationship and outcome.'},pills:['Blender','Unity','Substance Painter','Illustrator','Level Design','World-building']}
+      {sectionLabel:{ko:'',en:''},title:{ko:'',en:''},text:{ko:'캐릭터를 찾아 대화 인터랙션을 통해 진행되는 게임 전개 대신, 쪽지 형태로만 소통하는 수줍은 전개를 선택했습니다. 최근 유행이었던 MBTI의 Introvert(내향성)를 주제로, NPC와 쪽지를 주고받으며 친밀도를 쌓아가는 VR 게임입니다. 게임 진행에 따라 마을 곳곳에 주민들의 쪽지가 생겨나고, 어떤 답장을 하느냐에 따라 각 NPC와의 친밀도와 게임 결과가 달라집니다.',en:'Instead of direct dialogue interactions, players communicate only through hidden notes — a shy, quiet way of connecting. Inspired by the MBTI Introvert type, this VR game has you exchanging notes with village NPCs to build intimacy. Notes appear across the village as you progress, and your replies determine each relationship and outcome.'}},
+
+      {sectionLabel:{ko:'',en:''},title:{ko:'',en:''},text:{},highlight: { 
+          ko: '"이 마을에 사는 사람들은 전부 내향 인간입니다. \n 서로에게 직접 말을 걸기를 부끄러워 하는 것 같아요.\n 대신 당신과 나누고 싶은 이야기를 쪽지에 써서 마을에 숨겨둡니다.\n 마을의 방식대로, 주민들과 친해져봅시다! 과연 당신도 마을의 주민이 될 수 있을까요? \n +쪽지로 마음을 나눈 사람들과 마주친다면 인사할 수 있을지도…"', 
+          en: '"All the people who live in this village are introverts.\n I think they are shy to talk to each other directly.\n Instead, I write the story I want to share with you on a note and hide it in the village.\n In the village\'s way, let\'s make friends with the residents! Will you be able to become a resident of the village, too?\n +Maybe I can say hello if I run into people who have shared their minds with a note..."' 
+        }},
+      { sectionLabel:{}, title:{}, text:{}, img:{src:'images/introvert/introvert_0.jpg', full:true} },
+
+      { sectionLabel:{}, title:{ko:'스케치 및 제작과정',en:'Process & Sketch'}, text:{}, },
+      { sectionLabel:{}, title:{}, text:{}, img:{src:'images/introvert/introvert_1.jpg', full:true} },
+      { sectionLabel:{}, title:{}, text:{}, img:{src:'images/introvert/introvert_2.jpg', full:true} },
+      { sectionLabel:{}, title:{}, text:{}, img:{src:'images/introvert/introvert_3.jpg', full:true} },
+      { sectionLabel:{}, title:{}, text:{}, img:{src:'images/introvert/introvert_4.jpg', full:true} },
+
+      { sectionLabel:{}, title:{ko:'인게임 뷰',en:'Ingame View'}, text:{}, },
+      { sectionLabel:{}, title:{}, text:{}, img:{src:'images/introvert/introvert_5.jpg', full:true} },
+      { sectionLabel:{}, title:{}, text:{}, img:{src:'images/introvert/introvert_6.jpg', full:true} },
+      { sectionLabel:{}, title:{}, text:{}, img:{src:'images/introvert/introvert_7.jpg', full:true} },
+
+      { sectionLabel:{}, title:{}, text:{ko:'게임 소통 장치인 메시지 컴포넌트의 일부 코드입니다.',en:'Some code part of the message component, a game communication device.'}, },
+      { sectionLabel:{}, title:{}, text:{}, img:{src:'images/introvert/introvert_8.jpg', full:true} },
+      { sectionLabel:{}, title:{}, text:{}, img:{src:'images/introvert/introvert_9.jpg', full:true} },
+
+
+      
+
+
+      {sectionLabel:{},title:{},text:{},pills:['Blender','Unity','Substance Painter','Illustrator','Level Design','World-building']}
     ]
   }
 };
@@ -923,28 +986,20 @@ function renderCase(id) {
   `;
 
   body.innerHTML = d.sections.map(s => {
-    const imgs = (s.images||[]).map(img =>
-      `<div class="cs-img-block${section.img.full ? ' full' : ''}">
-         ${section.img.src 
-     ? `<img src="${section.img.src}" alt="Section Image" class="cs-section-img">` 
-    : section.img.emoji}
-</div>`
-    ).join('');
     const hi = s.highlight ? `<div class="cs-highlight">${s.highlight[L]||s.highlight.en}</div>` : '';
     const pills = s.pills ? `<div class="cs-pill-row">${s.pills.map(p=>`<span class="cs-pill">${p}</span>`).join('')}</div>` : '';
     const titleHtml = (s.title[L]||s.title.en) ? `<h2 class="cs-section-title">${s.title[L]||s.title.en}</h2>` : '';
     const labelHtml = (s.sectionLabel[L]||s.sectionLabel.en) ? `<div class="cs-section-label">${s.sectionLabel[L]||s.sectionLabel.en}</div>` : '';
+    const imgHtml = s.img && s.img.src ? `<div class="cs-img-block${s.img.full ? ' full' : ''}"><img src="${s.img.src}" alt="" class="cs-section-img" style="width:100%;height:100%;object-fit:cover;display:block;"></div>` : '';
     
+    const isEmpty = !(s.title[L]||s.title.en) && !(s.text[L]||s.text.en) && !s.highlight && !s.pills;
     return `
-      <div class="cs-section">
+      <div class="cs-section${isEmpty ? ' cs-section--img-only' : ''}">
         ${labelHtml}
         ${titleHtml}
-        <p class="cs-text">${s.text[L]||s.text.en}</p>
+        ${(s.text[L]||s.text.en) ? `<p class="cs-text">${s.text[L]||s.text.en}</p>` : ''}
         ${hi}
-        ${s.img ? `
-      <div class="cs-img-block">
-        <img src="${s.img}" alt="" class="cs-section-img">
-      </div>` : ''}
+        ${imgHtml}
         ${pills}
       </div>`;
   }).join('');
